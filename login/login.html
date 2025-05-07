@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoMatch - Login</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <h1 class="logo">AutoMatch</h1>
+  </nav>
+
+  <main class="container">
+    <div class="form-container">
+      <div class="tabs">
+        <button id="loginTab" class="active">Iniciar Sesión</button>
+        <button id="registerTab">Crear Cuenta</button>
+      </div>
+
+      <!-- Formulario de Login -->
+      <form id="loginForm" class="form active-form">
+        <label for="loginEmail">Correo Electrónico</label>
+        <input type="email" id="loginEmail" placeholder="correo@example.com" required />
+
+        <label for="loginPassword">Contraseña</label>
+        <input type="password" id="loginPassword" placeholder="********" required />
+
+        <button type="submit" class="submit-btn">Ingresar</button>
+      </form>
+
+      <!-- Formulario de Registro -->
+      <form id="registerForm" class="form">
+        <label for="registerName">Nombre Completo</label>
+        <input type="text" id="registerName" placeholder="Juan Pérez" required />
+
+        <label for="registerEmail">Correo Electrónico</label>
+        <input type="email" id="registerEmail" placeholder="correo@example.com" required />
+
+        <label for="registerPassword">Contraseña</label>
+        <input type="password" id="registerPassword" placeholder="********" required />
+
+        <button type="submit" class="submit-btn">Crear Cuenta</button>
+      </form>
+
+      <form id="loginForm" class="form active-form">
+        <!-- Elementos del formulario de login aquí -->
+      </form>
+      
+    </div>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>

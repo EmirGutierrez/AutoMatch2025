@@ -1,0 +1,218 @@
+/* Reset básico de márgenes y padding */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fondo general y fuentes */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  background-color: #f0f0f1;
+  color: #1d2327;
+  line-height: 1.5;
+  padding-bottom: 70px; /* Espacio para el footer fijo */
+}
+
+.wp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.wp-logo {
+  color: #f0f0f1;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Header con estilo de pestañas */
+.wp-header {
+  background-color: #1f1f1f;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #72aee6;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  left: 0;
+}
+
+.wp-nav-links {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wp-nav-links li {
+  position: relative;
+  margin: 0 2px;
+}
+
+.wp-nav-links li a {
+  color: #f0f0f1;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 12px 20px;
+  display: block;
+  background-color: #2c2c2c;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid #3c3c3c;
+  border-bottom: none;
+  transition: all 0.3s ease;
+  position: relative;
+  top: 2px;
+}
+
+/* Pestaña activa - ESTILO ACTUALIZADO */
+.wp-nav-links li a.active-tab {
+  background-color: #3a3a3a;
+  color: #ffffff;
+  border-color: #72aee6;
+  box-shadow: 0 -3px 5px rgba(0,0,0,0.1);
+  transform: translateY(1px);
+  font-weight: bold;
+}
+
+/* Efecto hover */
+.wp-nav-links li a:hover:not(.active-tab) {
+  background-color: #333333;
+  color: #72aee6;
+}
+
+/* Indicador de pestaña activa */
+.wp-nav-links li a.active-tab::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #72aee6;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+/* Logo ajustado */
+.wp-branding {
+  padding-bottom: 10px;
+  margin-left: 40px;
+  padding: 0 20px;
+}
+
+/* Main content layout */
+.wp-main {
+  display: flex;
+  margin-top: 20px;
+  padding-bottom: 40px;
+}
+
+.wp-sidebar {
+  width: 25%;
+  padding-right: 20px;
+}
+
+.wp-content {
+  width: 75%;
+}
+
+.wp-widget h3 {
+  font-size: 14px;
+  padding: 8px 12px;
+  margin: 0;
+  line-height: 1.4;
+  border-bottom: 1px solid #dcdcde;
+  background: #f6f7f7;
+}
+
+.wp-widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wp-widget li {
+  padding: 8px 12px;
+  border-bottom: 1px solid #dcdcde;
+  font-size: 13px;
+}
+
+/* Sections */
+.wp-section {
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  box-shadow: 0 1px 1px rgba(0,0,0,.04);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.wp-section h2 {
+  font-size: 23px;
+  font-weight: 400;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #dcdcde;
+}
+
+.wp-section h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #1d2327;
+}
+
+.wp-meta {
+  color: #646970;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.wp-description {
+  margin-bottom: 20px;
+}
+
+.wp-features h3 {
+  font-size: 16px;
+  margin: 20px 0 10px;
+}
+
+.wp-features ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+.wp-features li {
+  margin-bottom: 8px;
+}
+
+/* Footer mejorado */
+.wp-footer {
+  background: #1f1f1f;
+  color: #f0f0f1;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.wp-footer p {
+  margin: 0;
+}
