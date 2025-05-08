@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoMatch</title>
+  <link rel="stylesheet" href="css/calendario.css" />
+  <script src="js/calendario.js"></script>
+</head>
+<body>
+  <div class="wp-container">
+    <header class="wp-header">
+      <div class="wp-branding">
+        <h1 class="wp-logo">AutoMatch</h1>
+      </div>
+      <nav class="wp-navbar">
+        <ul class="wp-nav-links">
+          <li><a href="menu.html">🏠 Home</a></li>
+          <li><a href="nosotros.html">🧑 Nosotros</a></li>
+          <li><a href="vehiculos.html">🚗 Nuestros Vehículos</a></li>
+          <li><a href="calendario.html">📅 Calendario</a></li>
+          <li><a href="legales.html">📜 Legales</a></li>
+          <li><a href="admin.html">👤 Admin</a></li>
+        </ul>
+      </nav>
+    </header>
+
+
+    <div class="calendario-container">
+      <h2>Calendario de Citas</h2>
+      <button id="agendar-cita-btn">Agendar Cita</button>
+
+      <div id="calendario" class="calendario">
+          <div class="calendario-header">
+              <button id="prev-month">&lt;</button>
+              <h2 id="current-month"></h2>
+              <button id="next-month">&gt;</button>
+          </div>
+          <div id="dias" class="calendario-dias">
+              </div>
+      </div>
+
+      <div id="modal-agendar" class="modal">
+          <div class="modal-content">
+              <span class="cerrar-modal">&times;</span>
+              <h3>Agendar Nueva Cita</h3>
+              <p id="fecha-seleccionada"></p>
+              <div class="form-group">
+                  <label for="hora-cita">Hora:</label>
+                  <select id="hora-cita">
+                      <option value="09:00">09:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="14:00">14:00</option>
+                      <option value="15:00">15:00</option>
+                      <option value="16:00">16:00</option>
+                  </select>
+              </div>
+              <button id="guardar-cita-btn">Guardar Cita</button>
+              <div id="mensaje-cita" class="mensaje"></div>
+          </div>
+      </div>
+  </div>
+
+  <script src="calendario.js"></script>
+</body>
+</html>
+

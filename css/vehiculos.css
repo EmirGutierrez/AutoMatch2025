@@ -388,11 +388,13 @@ body {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9em;
   transition: background-color 0.3s ease;
+  float: left;
+  margin: left ;
 }
 
 .filtros-horizontal .botones-filtro button:hover {

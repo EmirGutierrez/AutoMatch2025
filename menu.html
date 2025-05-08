@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>AutoMatch</title>
     <link rel="stylesheet" href="css/menu.css" />
+    <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
+    <script src="js/menu.js"></script>
 </head>
 <body>
     <div class="wp-container">
@@ -17,34 +19,114 @@
                     <li><a href="menu.html" class="active-tab">🏠 Home</a></li>
                     <li><a href="nosotros.html">🧑 Nosotros</a></li>
                     <li><a href="vehiculos.html">🚗 Nuestros Vehículos</a></li>
-                    <li><a href="preguntas.html">❓ Preguntas Frecuentes</a></li>
+                    <li><a href="calendario.html">📅 Calendario</a></li>
                     <li><a href="legales.html">📜 Legales</a></li>
                     <li><a href="admin.html">👤 Admin</a></li>
                 </ul>
             </nav>
         </header>
 
-        <main class="wp-main">
-            <aside class="wp-sidebar">
-                <div class="wp-widget">
-
+        <main class="wp-main-home">
+            <section class="hero-carousel">
+                <div class="carousel-slide">
+                    <img src="https://via.placeholder.com/1200x400/778899/FFFFFF?Text=Vehículo+Destacado+1" alt="Vehículo Destacado 1">
+                    <div class="carousel-caption">
+                        <h3>Descubre el Nuevo Modelo X</h3>
+                        <p>Elegancia y potencia en un solo lugar.</p>
+                        <a href="#" class="button">Ver Detalles</a>
+                    </div>
                 </div>
-            </aside>
+                <div class="carousel-slide">
+                    <img src="https://via.placeholder.com/1200x400/4682B4/FFFFFF?Text=Promoción+Especial" alt="Promoción Especial">
+                    <div class="carousel-caption">
+                        <h3>Ofertas de Temporada</h3>
+                        <p>Descuentos increíbles por tiempo limitado.</p>
+                        <a href="#" class="button">Ver Promociones</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://via.placeholder.com/1200x400/2E8B57/FFFFFF?Text=Aventura+Todo+Terreno" alt="Aventura Todo Terreno">
+                    <div class="carousel-caption">
+                        <h3>Listos para la Aventura</h3>
+                        <p>Explora nuestra selección de vehículos 4x4.</p>
+                        <a href="#" class="button">Explorar SUVs</a>
+                    </div>
+                </div>
+                <button class="carousel-control prev">&#10094;</button>
+                <button class="carousel-control next">&#10095;</button>
+                <div class="carousel-indicators">
+                    </div>
+                </section>
 
-            <section class="wp-section" id="home">
-                <h3>🏠 Bienvenido a AutoMatch</h3>
-                <p>AutoMatch es una plataforma web desarrollada con fines demostrativos, pensada para simular cómo
-                    funcionaría una concesionaria digital moderna. Nuestro objetivo es mostrar cómo los usuarios podrían
-                    explorar vehículos disponibles, conocer detalles importantes, realizar consultas frecuentes y navegar
-                    fácilmente a través de una interfaz futurista, profesional y accesible.</p>
-                <p>
-                    Desde el inicio de sesión, los usuarios pueden acceder a las distintas secciones de la aplicación,
-                    incluyendo información sobre nosotros, nuestro catálogo de vehículos, preguntas frecuentes, aspectos
-                    legales y un panel exclusivo para administración. Esta aplicación es un ejemplo funcional de cómo se
-                    integran diseño, animaciones, estructura web y lógica de usuario en un entorno realista.</p>
+            <section class="why-choose-us">
+                <h2>¿Por qué elegir AutoMatch?</h2>
+                <div class="reasons-grid">
+                    <div class="reason">
+                        <i class="fas fa-car fa-3x"></i>
+                        <h3>Amplia Selección</h3>
+                        <p>Un extenso catálogo de vehículos para todos los gustos y necesidades.</p>
+                    </div>
+                    <div class="reason">
+                        <i class="fas fa-hand-holding-usd fa-3x"></i>
+                        <h3>Precios Competitivos</h3>
+                        <p>Las mejores ofertas del mercado con opciones de financiamiento flexibles.</p>
+                    </div>
+                    <div class="reason">
+                        <i class="fas fa-users fa-3x"></i>
+                        <h3>Atención Personalizada</h3>
+                        <p>Un equipo de expertos listo para ayudarte en cada paso de tu compra.</p>
+                    </div>
+                    <div class="reason">
+                        <i class="fas fa-check-circle fa-3x"></i>
+                        <h3>Calidad Garantizada</h3>
+                        <p>Vehículos inspeccionados y con garantía para tu tranquilidad.</p>
+                    </div>
+                    <div class="reason">
+                        <i class="fas fa-check-circle fa-3x"></i>
+                        <h3>Innovación Constante</h3>
+                        <p>Siempre a la vanguardia con los últimos modelos y tecnologías del mercado automotriz.</p>
+                    </div>
+                    <div class="reason">
+                        <i class="fas fa-check-circle fa-3x"></i>
+                        <h3>Trámites Sencillos</h3>
+                        <p>Gestión ágil y transparente para que disfrutes de tu nuevo auto sin complicaciones.</p>
+                    </div>
+                    
+                </div>
             </section>
-        </main>
 
-    <script src="js/menu.js"></script>
+            <section class="popular-vehicles">
+                <h2>Nuestros Vehículos Populares</h2>
+                <div class="vehicles-grid">
+                    <div class="vehicle-card">
+                        <img src=https://automercantiltoyota.com/wp-content/uploads/2019/09/blanco-1.png alt="Vehículo Popular 1">
+                        <h3>Toyota Corolla</h3>
+                        <p>El Toyota Corolla es un sedán compacto o hatchback, conocido por su confiabilidad, economía de combustible y buen rendimiento. 
+                        Es una opción popular para familias y conductores que buscan un vehículo práctico y eficiente. </p>
+                        <a href="#" class="button secondary">Ver Detalles</a>
+                    </div>
+                    <div class="vehicle-card">
+                        <img src=https://s1.1zoom.me/b5050/723/Honda_CivicWhite_Side_480999_3840x2400.jpg alt="Vehículo Popular 2">
+                        <h3>Honda Civic</h3>
+                        <p>El Honda Civic es un automóvil compacto de gran popularidad, disponible en diferentes versiones como sedán, hatchback y Si. Ofrece una 
+                        combinación de eficiencia, rendimiento y tecnología. Se distingue por su diseño aerodinámico y su interior bien equipado, que combina estilo y funcionalidad. </p>
+                        <a href="#" class="button secondary">Ver Detalles</a>
+                    </div>
+                    <div class="vehicle-card">
+                        <img src=https://pnghunter.com/get-logo.php?id=18841 alt="Vehículo Popular 3">
+                        <h3>Chevrolet Camaro</h3>
+                        <p>El Chevrolet Camaro es un automóvil deportivo de dos puertas y tracción trasera con motor delantero, conocido por su desempeño y su estilo musculoso. 
+                        Se ha producido desde 1966 y ha sido un ícono de la industria automovilística. </p>
+                        <a href="#" class="button secondary">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="call-to-action">
+                    <p>¿Listo para encontrar tu auto ideal?</p>
+                    <a href="vehiculos.html" class="button primary">Explorar Todos los Vehículos</a>
+                </div>
+            </section>
+
+            </main>
+    </div>
 </body>
 </html>
