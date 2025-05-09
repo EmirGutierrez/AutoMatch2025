@@ -1,53 +1,35 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoMatch - Login</title>
-  <link rel="stylesheet" href="login.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login AutoMatch</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
+  <div class= "box" >
+    <span class="borderLine"></span>
+    <form>
 
-
-  <main class="container">
-    <div class="form-container">
-      <div class="tabs">
-        <button id="loginTab" class="active">Iniciar Sesión</button>
-        <button id="registerTab">Crear Cuenta</button>
+      <h2>Iniciar Sesion</h2>
+      
+      <div class="InputBox">
+        <input type="Correo" required="required">
+        <span>Usuario</span>
+        <i></i>
       </div>
 
-      <!-- Formulario de Login -->
-      <form id="loginForm" class="form active-form">
-        <label for="loginEmail">Correo Electrónico</label>
-        <input type="email" id="loginEmail" placeholder="correo@example.com" required />
-
-        <label for="loginPassword">Contraseña</label>
-        <input type="password" id="loginPassword" placeholder="********" required />
-
-        <button type="submit" class="submit-btn">Ingresar</button>
-      </form>
-
-      <!-- Formulario de Registro -->
-      <form id="registerForm" class="form">
-        <label for="registerName">Nombre Completo</label>
-        <input type="text" id="registerName" placeholder="Jared Argueta" required />
-
-        <label for="registerEmail">Correo Electrónico</label>
-        <input type="email" id="registerEmail" placeholder="ilovemilfs@example.com" required />
-
-        <label for="registerPassword">Contraseña</label>
-        <input type="password" id="registerPassword" placeholder="********" required />
-
-        <button type="submit" class="submit-btn">Crear Cuenta</button>
-      </form>
-
-      <form id="loginForm" class="form active-form">
-        <!-- Elementos del formulario de login aquí -->
-      </form>
-      
-    </div>
-  </main>
-
-  <script src="login.js"></script>
+      <div class="InputBox">
+        <input type="Contraseña" required="required">
+        <span>Contraseña</span>
+        <i></i>
+      </div>
+        <div class="links">
+            <a href="#">Olvidaste la Contraseña?</a>
+            <a href="#">Crea una Cuenta</a>
+        </div>
+        <input type="submit" value="Entrar">
+    </form>
+  </div>
 </body>
 </html>
