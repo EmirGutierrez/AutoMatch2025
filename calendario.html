@@ -20,7 +20,6 @@
           <li><a href="vehiculos.html">🚗 Nuestros Vehículos</a></li>
           <li><a href="calendario.html">📅 Calendario</a></li>
           <li><a href="legales.html">📜 Legales</a></li>
-          <li><a href="admin.html">👤 Admin</a></li>
         </ul>
       </nav>
     </header>
@@ -56,10 +55,22 @@
                       <option value="16:00">16:00</option>
                   </select>
               </div>
+               <h3>Motivo de la Cita</h3>
+              <p id="fecha-seleccionada"></p>
+              <div class="form-group">
+                  <select id="hora-cita">
+                      <option value="09:00">Revisión general</option>
+                      <option value="10:00">Prueba de manejo</option>
+                      <option value="11:00">Cita de servicio</option>
+                      <option value="14:00">Entrega de vehículo</option>
+                  </select>
+              </div>
               <button id="guardar-cita-btn">Guardar Cita</button>
               <div id="mensaje-cita" class="mensaje"></div>
           </div>
+          <button id="agendar-cita-btn">Nota</button>
       </div>
+        
   </div>
 
   <script src="calendario.js"></script>

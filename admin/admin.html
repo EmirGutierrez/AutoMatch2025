@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Panel de Administración Concesionaria</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="admin.css" />
+    <script src="admin.js"></script>
+    
+</head>
+<body>
+    <div class="wp-container">
+        <header class="wp-header">
+            <div class="wp-branding">
+                <h1 class="wp-logo">Panel de Administración</h1>
+            </div>
+        </header>
+
+        <div class="container">
+            <header>
+                <h1>Panel de Administración - Concesionaria</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#ventas">Ventas</a></li>
+                        <li><a href="#vehiculos">Vehículos</a></li>
+                        <li><a href="#pagos">Pagos</a></li>
+                        <li><a href="#clientes">Clientes</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <section id="inicio">
+                    <h2>Inicio</h2>
+                    <p>Bienvenido al sistema de administración. Aquí podrás gestionar la información de la concesionaria.</p>
+                </section>
+
+                <section id="ventas">
+                    <h2>Ventas</h2>
+                    <div id="lista-ventas">
+                        </div>
+                    <form id="form-venta">
+                        <h3>Registrar nueva venta</h3>
+                        <label>Cliente ID: <input type="number" name="cliente_id" required /></label>
+                        <label>Vehículo ID: <input type="number" name="vehiculo_id" required /></label>
+                        <label>Fecha: <input type="date" name="fecha_venta" required /></label>
+                        <label>Precio: <input type="number" name="precio" step="0.01" required /></label>
+                        <button type="submit" class="btn">Registrar Venta</button>
+                    </form>
+                </section>
+
+                <section id="vehiculos">
+                    <h2>Vehículos</h2>
+                    <div id="lista-vehiculos">
+                        </div>
+                    <form id="form-vehiculo">
+                        <h3>Agregar nuevo vehículo</h3>
+                        <label>Marca: <input type="text" name="marca" required /></label>
+                        <label>Modelo: <input type="text" name="modelo" required /></label>
+                        <label>Año: <input type="number" name="anio" required /></label>
+                        <label>Precio: <input type="number" name="precio" step="0.01" required /></label>
+                        <label>Estado:
+                            <select name="estado">
+                                <option value="disponible">Disponible</option>
+                                <option value="vendido">Vendido</option>
+                                <option value="en_reparacion">En Reparación</option>
+                            </select>
+                        </label>
+                        <button type="submit" class="btn">Agregar Vehículo</button>
+                    </form>
+                </section>
+
+                <section id="pagos">
+                    <h2>Pagos</h2>
+                    <div id="lista-pagos">
+                        </div>
+                    <form id="form-pago">
+                        <h3>Registrar nuevo pago</h3>
+                        <label>Venta ID: <input type="number" name="venta_id" required /></label>
+                        <label>Monto: <input type="number" name="monto" step="0.01" required /></label>
+                        <label>Método:
+                            <select name="metodo_pago">
+                                <option value="efectivo">Efectivo</option>
+                                <option value="tarjeta">Tarjeta de Crédito</option>
+                                <option value="transferencia">Transferencia</option>
+                            </select>
+                        </label>
+                        <label>Fecha: <input type="date" name="fecha_pago" required /></label>
+                        <button type="submit" class="btn">Registrar Pago</button>
+                    </form>
+                </section>
+
+                <section id="clientes">
+                    <h2>Clientes</h2>
+                    <div id="lista-clientes">
+                        </div>
+                    <form id="form-cliente">
+                        <h3>Agregar nuevo cliente</h3>
+                        <label>Nombre: <input type="text" name="nombre_cliente" required /></label>
+                        <label>Email: <input type="email" name="email_cliente" /></label>
+                        <label>Teléfono: <input type="tel" name="telefono_cliente" /></label>
+                        <button type="submit" class="btn">Agregar Cliente</button>
+                    </form>
+                </section>
+            </main>
+
+         
+        </div>
+    </div>
+</body>
+</html>
