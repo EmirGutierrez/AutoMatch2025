@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel de Administración Concesionaria</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Panel de Administración - Concesionaria</h1>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#citas">Citas</a></li>
+          <li><a href="#ventas">Ventas</a></li>
+          <li><a href="#vehiculos">Vehículos</a></li>
+          <li><a href="#pagos">Pagos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="inicio">
+        <h2>Inicio</h2>
+        <p>Bienvenido al sistema de administración. Consulta y gestiona las operaciones de la concesionaria.</p>
+      </section>
+
+      <!-- Secciones: Citas, Ventas, Vehículos, Pagos -->
+      <section id="citas">
+        <h2>Citas</h2>
+        <div id="lista-citas"></div>
+        <form id="form-cita">
+          <h3>Registrar nueva cita</h3>
+          <label>Cliente:
+            <input type="text" name="cliente" required />
+          </label>
+          <label>Fecha:
+            <input type="date" name="fecha" required />
+          </label>
+          <label>Hora:
+            <input type="time" name="hora" required />
+          </label>
+          <label>Notas:
+            <textarea name="notas"></textarea>
+          </label>
+          <button type="submit" class="btn">Guardar</button>
+        </form>
+      </section>
+
+      <section id="ventas">
+        <h2>Ventas</h2>
+        <div id="lista-ventas"></div>
+        <form id="form-venta">
+          <h3>Registrar nueva venta</h3>
+          <label>Cliente:
+            <input type="text" name="cliente" required />
+          </label>
+          <label>Vehículo:
+            <input type="text" name="vehiculo" required />
+          </label>
+          <label>Fecha:
+            <input type="date" name="fecha" required />
+          </label>
+          <label>Vendedor:
+            <input type="text" name="vendedor" required />
+          </label>
+          <label>Precio:
+            <input type="number" name="precio" required />
+          </label>
+          <button type="submit" class="btn">Guardar</button>
+        </form>
+      </section>
+
+      <section id="vehiculos">
+        <h2>Vehículos</h2>
+        <div id="lista-vehiculos"></div>
+        <form id="form-vehiculo">
+          <h3>Agregar nuevo vehículo</h3>
+          <label>Marca:
+            <input type="text" name="marca" required />
+          </label>
+          <label>Modelo:
+            <input type="text" name="modelo" required />
+          </label>
+          <label>Año:
+            <input type="number" name="anio" required />
+          </label>
+          <label>Precio:
+            <input type="number" name="precio" required />
+          </label>
+          <label>Estado:
+            <select name="estado">
+              <option value="Disponible">Disponible</option>
+              <option value="Vendido">Vendido</option>
+              <option value="En Reparación">En Reparación</option>
+            </select>
+          </label>
+          <button type="submit" class="btn">Guardar</button>
+        </form>
+      </section>
+
+      <section id="pagos">
+        <h2>Pagos</h2>
+        <div id="lista-pagos"></div>
+        <form id="form-pago">
+          <h3>Registrar nuevo pago</h3>
+          <label>ID Venta:
+            <input type="text" name="id_venta" required />
+          </label>
+          <label>Monto:
+            <input type="number" name="monto" required />
+          </label>
+          <label>Método de pago:
+            <select name="metodo">
+              <option value="Efectivo">Efectivo</option>
+              <option value="Tarjeta de Crédito">Tarjeta</option>
+              <option value="Transferencia">Transferencia</option>
+            </select>
+          </label>
+          <label>Fecha:
+            <input type="date" name="fecha" required />
+          </label>
+          <button type="submit" class="btn">Guardar</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Concesionaria XYZ. Todos los derechos reservados.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
