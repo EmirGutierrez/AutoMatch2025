@@ -11,6 +11,8 @@ body {
   height: 100vh;
 }
 
+
+
 .navbar {
   background-color: #1f1f1f;
   padding: 20px;
@@ -29,6 +31,7 @@ body {
   align-items: center;
   height: 80vh;
   padding: 20px;
+  margin: 90px auto;
 }
 
 .form-container {

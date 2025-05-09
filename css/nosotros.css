@@ -218,3 +218,66 @@ body {
 .wp-footer p {
   margin: 0;
 }
+
+.sobre-nosotros {
+    background-color: #ffffff;
+    background-position: center;
+    color: #000000;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+    max-width: 950px;
+    margin: 50px auto;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.sobre-nosotros h2 {
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #000000;
+    text-shadow: 0 0 10px rgba(97, 97, 97, 0.7);
+}
+
+.sobre-nosotros p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* Tarjetas de información */
+.sobre-nosotros .info-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    margin-top: 20px;
+}
+
+/* Botón de acción */
+.sobre-nosotros .btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 24px;
+    background-color: #72aee6;
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 18px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.sobre-nosotros .btn:hover {
+    background-color: #559bcc;
+    box-shadow: 0 0 12px rgba(114, 174, 230, 0.8);
+}

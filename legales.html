@@ -24,7 +24,75 @@
       </nav>
     </header>
 
-    <section class="wp-section" id="nosotros">
-      <h3>Sobre Nosotros</h3>
-      <p>En AutoMatch, conectamos personas con autos que se ajustan a sus sueños y necesidades.</p>
-    </section>
+
+  <div id="legal-container"></div>
+
+  <script>
+    const legalData = [
+      {
+        title: "1. Obligaciones Fiscales y Facturación Electrónica",
+        items: [
+          { heading: "Factura Electrónica (FACE)", content: "Debes emitir facturas electrónicas mediante el sistema FACE autorizado por la SAT." },
+          { heading: "Registro Mercantil", content: "Inscripción obligatoria en el Registro Mercantil de Guatemala para operar legalmente." }
+        ]
+      },
+      {
+        title: "2. Comercio Electrónico y Protección al Consumidor",
+        items: [
+          { heading: "Información Transparente", content: "Debes mostrar claramente la razón social, contacto, políticas de privacidad y uso." },
+          { heading: "Publicidad", content: "El usuario debe aceptar recibir mensajes comerciales; no puedes enviarlos sin permiso." }
+        ]
+      },
+      {
+        title: "3. Protección de Datos Personales",
+        items: [
+          { heading: "Consentimiento", content: "El usuario debe aceptar el uso de sus datos. Debes explicar claramente cómo los usarás." },
+          { heading: "Derecho de eliminación", content: "Los usuarios pueden solicitar eliminar sus datos personales del sistema." }
+        ]
+      },
+      {
+        title: "4. Firmas Electrónicas y Contratos Digitales",
+        items: [
+          { heading: "Validez Legal", content: "Las firmas electrónicas tienen el mismo valor legal que las manuscritas en Guatemala." },
+          { heading: "Prestadores Certificados", content: "Usa certificados digitales emitidos por entidades autorizadas por el Ministerio de Economía." }
+        ]
+      },
+      {
+        title: "5. Propiedad Intelectual",
+        items: [
+          { heading: "Registro de marca y contenido", content: "Registra tu marca y contenido original en el Registro de la Propiedad Intelectual." },
+          { heading: "Uso de contenido de terceros", content: "Evita usar imágenes o textos de terceros sin autorización legal o licencia." }
+        ]
+      }
+    ];
+
+    const container = document.getElementById('legal-container');
+
+    legalData.forEach(section => {
+      const sectionDiv = document.createElement('div');
+      sectionDiv.className = 'accordion-section';
+
+      const title = document.createElement('h2');
+      title.textContent = section.title;
+      sectionDiv.appendChild(title);
+
+      section.items.forEach(item => {
+        const detail = document.createElement('details');
+        const summary = document.createElement('summary');
+        summary.textContent = item.heading;
+        const content = document.createElement('p');
+        content.textContent = item.content;
+
+        detail.appendChild(summary);
+        detail.appendChild(content);
+        sectionDiv.appendChild(detail);
+      });
+
+      container.appendChild(sectionDiv);
+    });
+  </script>
+
+</body>
+</html>
+
+  

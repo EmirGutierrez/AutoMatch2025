@@ -60,11 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
   let citasOcupadas = []; // Aquí se almacenarían las citas obtenidas de la base de datos
 
   // Simulación de citas ocupadas (reemplazar con datos de la base de datos)
-  citasOcupadas = [
-      { fecha: '2025-05-15', hora: '09:00' },
-      { fecha: '2025-05-15', hora: '11:00' },
-      { fecha: '2025-05-20', hora: '14:00' }
-  ];
 
   function mostrarCalendario(year, month) {
       currentDate = new Date(year, month);
