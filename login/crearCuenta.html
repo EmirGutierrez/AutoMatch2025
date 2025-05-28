@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login AutoMatch</title>
-  <link rel="stylesheet" href="login.css">
+  <title>Crear Cuenta - AutoMatch</title>
+  <link rel="stylesheet" href="crearCuenta.css">
   <style>
     .mensaje-exito {
       position: fixed;
@@ -19,9 +19,8 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       display: none;
       z-index: 9999;
-      opacity: 0;
+      animation: aparecer 0.5s ease-in-out;
       transition: opacity 0.5s ease-out;
-      animation: aparecer 0.5s ease-in;
     }
 
     @keyframes aparecer {
@@ -33,12 +32,19 @@
 <body>
 
   <!-- MENSAJE FUERA DEL CUADRO -->
-  <div class="mensaje-exito" id="mensajeExito">¡Inicio de sesión exitoso!</div>
+  <div class="mensaje-exito" id="mensajeExito">¡Cuenta creada exitosamente!</div>
 
   <div class="box">
     <span class="borderLine"></span>
-    <form id="loginForm">
-      <h2>Iniciar Sesión</h2>
+    <form id="crearCuentaForm">
+
+      <h2>Crear Cuenta</h2>
+
+      <div class="inputBox">
+        <input type="text" id="nombre" required="required">
+        <span>Nombre</span>
+        <i></i>
+      </div>
 
       <div class="inputBox">
         <input type="text" id="usuario" required="required">
@@ -53,36 +59,34 @@
       </div>
 
       <div class="Links">
-        <a href="crearCuenta.html">Crea una Cuenta</a>
+        <a href="login.html">Iniciar Sesión</a>
       </div>
 
-      <input type="submit" value="Ingresar">
+      <input type="submit" value="Crear Cuenta">
     </form>
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    document.getElementById('crearCuentaForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
+      const nombre = document.getElementById('nombre').value;
       const usuario = document.getElementById('usuario').value;
       const contrasena = document.getElementById('contrasena').value;
       const mensaje = document.getElementById('mensajeExito');
 
-      if (usuario && contrasena) {
+      if (nombre && usuario && contrasena) {
         mensaje.style.display = 'block';
-        // Forzar reflujo para que la transición funcione
-        void mensaje.offsetWidth;
         mensaje.style.opacity = '1';
 
         setTimeout(() => {
           mensaje.style.opacity = '0';
           setTimeout(() => {
             mensaje.style.display = 'none';
-          }, 500); // Esperar a que termine la transición
-        }, 3000);
+          }, 500); // Espera a que termine la transición
+        }, 3000); // Mostrar por 3 segundos
       }
     });
   </script>
-
 </body>
 </html>
