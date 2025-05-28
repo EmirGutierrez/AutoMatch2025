@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="css/admin.css" />
     <link rel="stylesheet" href="admin.css" />
     <script src="admin.js"></script>
-    
+    <link rel="stylesheet" href="css/admin.css" />
+    <!-- <script defer src="js/admin.js"></script> -->
+
 </head>
 <body>
     <div class="wp-container">
@@ -37,19 +39,29 @@
                     <p>Bienvenido al sistema de administración. Aquí podrás gestionar la información de la concesionaria.</p>
                 </section>
 
-                <section id="ventas">
-                    <h2>Ventas</h2>
-                    <div id="lista-ventas">
-                        </div>
-                    <form id="form-venta">
-                        <h3>Registrar nueva venta</h3>
-                        <label>Cliente ID: <input type="number" name="cliente_id" required /></label>
-                        <label>Vehículo ID: <input type="number" name="vehiculo_id" required /></label>
-                        <label>Fecha: <input type="date" name="fecha_venta" required /></label>
-                        <label>Precio: <input type="number" name="precio" step="0.01" required /></label>
-                        <button type="submit" class="btn">Registrar Venta</button>
-                    </form>
-                </section>
+                <!-- Sección Ventas -->
+<section id="ventas">
+  <h2>Ventas</h2>
+  <div id="lista-ventas"></div>
+  <form id="form-venta">
+    <input name="cliente_id" … />
+    <input name="vehiculo_id" … />
+    <input name="fecha_venta" … />
+    <input name="precio" … />
+    <button type="submit">Registrar Venta</button>
+  </form>
+</section>
+
+<!-- Igual para los demás: -->
+<div id="lista-vehiculos"></div>
+<form id="form-vehiculo">…</form>
+
+<div id="lista-pagos"></div>
+<form id="form-pago">…</form>
+
+<div id="lista-clientes"></div>
+<form id="form">…</form>
+
 
                 <section id="vehiculos">
                     <h2>Vehículos</h2>
@@ -71,6 +83,7 @@
                         <button type="submit" class="btn">Agregar Vehículo</button>
                     </form>
                 </section>
+                
 
                 <section id="pagos">
                     <h2>Pagos</h2>
@@ -99,8 +112,10 @@
                     <form id="form-cliente">
                         <h3>Agregar nuevo cliente</h3>
                         <label>Nombre: <input type="text" name="nombre_cliente" required /></label>
-                        <label>Email: <input type="email" name="email_cliente" /></label>
+                        <label>Email: <input type="correo" name="correo_cliente" /></label>
                         <label>Teléfono: <input type="tel" name="telefono_cliente" /></label>
+                        <label>Direccion: <input type="text" name="direccion_cliente" /></label>
+
                         <button type="submit" class="btn">Agregar Cliente</button>
                     </form>
                 </section>
@@ -110,4 +125,5 @@
         </div>
     </div>
 </body>
+<script src="/js/Post.js"></script>
 </html>

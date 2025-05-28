@@ -57,6 +57,91 @@ document.addEventListener('DOMContentLoaded', () => {
     // Aquí puedes usar fetch() para enviar los datos a una API
     e.target.reset();
   });
+// admin.js
+const MODULES = {
+  ventas: {
+    url: 'http://localhost:8889/ventas',
+    columns: ['idVenta','idCliente','idVehiculo','fechaVenta','vendedor','idUsuario'],
+    listContainer: 'lista-ventas',
+    formId: 'form-venta',
+    fieldMap: {
+      cliente_id: 'idCliente',
+      vehiculo_id: 'idVehiculo',
+      fecha_venta: 'fechaVenta',
+      precio: 'montoTotal'
+    }
+  },
+  vehiculos: {
+    url: 'http://localhost:8889/vehiculo',
+    columns: ['idVehiculo','marca','modelo','anio','precio','estado','imagenUrl'],
+    listContainer: 'lista-vehiculos',
+    formId: 'form-vehiculo',
+    fieldMap: { marca: 'marca', modelo: 'modelo', anio: 'anio', precio: 'precio', estado: 'estado' }
+  },
+  pagos: {
+    url: 'http://localhost:8889/pagos',
+    columns: ['idPago','idVenta','monto','metodoPago','fechaPago'],
+    listContainer: 'lista-pagos',
+    formId: 'form-pago',
+    fieldMap: { venta_id: 'idVenta', monto: 'monto', metodo_pago: 'metodoPago', fecha_pago: 'fechaPago' }
+  },
+  clientes: {
+    url: 'http://localhost:8889/clientes',
+    columns: ['idCliente','nombre','correo','telefono','direccion'],
+    listContainer: 'lista-clientes',
+    formId: 'form-cliente',
+    fieldMap: { nombre_cliente: 'nombre', email_cliente: 'correo', telefono_cliente: 'telefono' }
+  }
+};
+
+async function cargar(moduleKey) {
+  const cfg = MODULES[moduleKey];
+  const cont = document.getElementById(cfg.listContainer);
+  cont.innerHTML = 'Cargando…';
+  try {
+    const resp = await fetch(cfg.url);
+    const items = await resp.json();
+    cont.innerHTML = items.map(item =>
+      `<div>${cfg.columns.map(c=>`${c}: ${item[c]}`).join(' | ')}</div>`
+    ).join('');
+  } catch (e) {
+    cont.innerHTML = 'Error al cargar';
+    console.error(e);
+  }
+}
+
+function bindForm(moduleKey) {
+  const cfg = MODULES[moduleKey];
+  document.getElementById(cfg.formId)
+    .addEventListener('submit', async e => {
+      e.preventDefault();
+      const data = {};
+      Object.entries(cfg.fieldMap).forEach(([inputName, prop]) => {
+        data[prop] = e.target.elements[inputName].value;
+      });
+      try {
+        const resp = await fetch(cfg.url, {
+          method: 'POST',
+          headers: { 'Content-Type':'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!resp.ok) throw new Error(resp.statusText);
+        e.target.reset();
+        cargar(moduleKey);
+      } catch (err) {
+        console.error(err);
+        alert('Error al guardar');
+      }
+    });
+}
+
+// Al cargar la página, inicializa cada módulo
+window.addEventListener('DOMContentLoaded', () => {
+  Object.keys(MODULES).forEach(key => {
+    cargar(key);
+    bindForm(key);
+  });
+});
 
   // Agrega eventos similares para los demás formularios (ventas, vehículos, pagos)...
 });
