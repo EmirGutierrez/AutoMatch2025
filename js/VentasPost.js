@@ -1,19 +1,19 @@
 (() => {
   const ventasApi = "http://localhost:8889/ventas";
-  const form = document.getElementById('form-venta');
+  const form = document.getElementById('ventas');
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
     const fd = new FormData(form);
     const payload = {
-      id_cliente: parseInt(fd.get('cliente_id'), 10),
-      id_vehiculo: parseInt(fd.get('vehiculo_id'), 10),
+      id_cliente: parseInt(fd.get('id_cliente'), 10),
+      id_vehiculo: parseInt(fd.get('id_vehiculo'), 10),
       fecha_venta: fd.get('fecha_venta'),
-      precio: parseFloat(fd.get('precio'))
+      vendedor: fd.get('vendedor')
     };
 
-    console.log("Enviando payload:", payload);
+    console.log("🚀 Enviando payload:", payload);
 
     try {
       const res = await fetch(ventasApi, {
