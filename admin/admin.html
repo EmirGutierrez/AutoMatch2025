@@ -40,28 +40,19 @@
                 </section>
 
                 <!-- Sección Ventas -->
-<section id="ventas">
-  <h2>Ventas</h2>
-  <div id="lista-ventas"></div>
-  <form id="form-venta">
-    <input name="cliente_id" … />
-    <input name="vehiculo_id" … />
-    <input name="fecha_venta" … />
-    <input name="precio" … />
-    <button type="submit">Registrar Venta</button>
-  </form>
-</section>
-
-<!-- Igual para los demás: -->
-<div id="lista-vehiculos"></div>
-<form id="form-vehiculo">…</form>
-
-<div id="lista-pagos"></div>
-<form id="form-pago">…</form>
-
-<div id="lista-clientes"></div>
-<form id="form">…</form>
-
+ <section id="ventas">
+                    <h2>Ventas</h2>
+                    <div id="lista-ventas">
+                        </div>
+                    <form id="form-venta">
+                        <h3>Registrar nueva venta</h3>
+                        <label>Cliente ID: <input type="number" name="cliente_id" required /></label>
+                        <label>Vehículo ID: <input type="number" name="vehiculo_id" required /></label>
+                        <label>Fecha: <input type="date" name="fecha_venta" required /></label>
+                        <label>Precio: <input type="number" name="precio" step="0.01" required /></label>
+                        <button type="submit" class="btn">Registrar Venta</button>
+                    </form>
+                </section>
 
                 <section id="vehiculos">
                     <h2>Vehículos</h2>
