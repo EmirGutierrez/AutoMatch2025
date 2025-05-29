@@ -6,7 +6,6 @@
     <title>Panel de Administración Concesionaria</title>
     <link rel="stylesheet" href="css/admin.css" />
     <link rel="stylesheet" href="admin.css" />
-    <script src="admin.js"></script>
     <link rel="stylesheet" href="css/admin.css" />
     <!-- <script defer src="js/admin.js"></script> -->
 
@@ -40,7 +39,7 @@
                 </section>
 
                 <!-- Sección Ventas -->
- <section id="ventas">
+                <section id="ventas">
                     <h2>Ventas</h2>
                     <div id="lista-ventas">
                         </div>
@@ -58,21 +57,59 @@
                     <h2>Vehículos</h2>
                     <div id="lista-vehiculos">
                         </div>
-                    <form id="form-vehiculo">
-                        <h3>Agregar nuevo vehículo</h3>
-                        <label>Marca: <input type="text" name="marca" required /></label>
-                        <label>Modelo: <input type="text" name="modelo" required /></label>
-                        <label>Año: <input type="number" name="anio" required /></label>
-                        <label>Precio: <input type="number" name="precio" step="0.01" required /></label>
-                        <label>Estado:
-                            <select name="estado">
-                                <option value="disponible">Disponible</option>
-                                <option value="vendido">Vendido</option>
-                                <option value="en_reparacion">En Reparación</option>
-                            </select>
-                        </label>
-                        <button type="submit" class="btn">Agregar Vehículo</button>
-                    </form>
+<section id="vehiculos">
+  <h2>Vehículos</h2>
+  <div id="lista-vehiculos"></div>
+
+  <form id="vehiculo">
+    <h3>Agregar Nuevo Vehículo</h3>
+
+    <label>
+      Marca:
+      <input type="text" name="marca" required />
+    </label>
+    <label>
+      Modelo:
+      <input type="text" name="modelo" required />
+    </label>
+    <label>
+      Año:
+      <input type="number" name="anio" required />
+    </label>
+    <label>
+      Precio:
+      <input type="number" step="0.01" name="precio" required />
+    </label>
+    <label>
+      Estado:
+      <select name="estado" required>
+        <option value="">Selecciona...</option>
+        <option value="nuevo">Nuevo</option>
+        <option value="usado">Usado</option>
+      </select>
+    </label>
+
+    <!-- Aquí va el input file + botón de subida -->
+    <input type="hidden" name="imagen_local_path" />
+
+    <label>
+      Imagen local:
+      <input type="file" id="imagenFile" accept="image/*" />
+    </label>
+    <button type="button" id="uploadImageButton">Subir Imagen</button>
+    <p id="uploadStatus" style="font-size:0.9em;color:#555"></p>
+
+    <!-- Campo para URL externa -->
+    <label>
+      URL de imagen externa:
+      <input type="url" name="imagen_url" placeholder="https://ejemplo.com/imagen.jpg" />
+    </label>
+
+    <button type="submit">Agregar Vehículo</button>
+  </form>
+</section>
+
+<script src="js/postVehiculos.js"></script>
                 </section>
                 
 
@@ -115,6 +152,8 @@
          
         </div>
     </div>
+    
 </body>
 <script src="/js/Post.js"></script>
+<script src="/js/postVehiculos.js"></script>
 </html>

@@ -42,3 +42,6 @@ const form = document.getElementById('form-cliente');
       alert('Hubo un error al agregar el cliente. Por favor inténtalo de nuevo.');
     }
   });
+
+
+  
