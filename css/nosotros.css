@@ -1,19 +1,20 @@
-/* Reset básico de márgenes y padding */
+/* RESET */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Fondo general y fuentes */
+/* GENERAL */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   background: linear-gradient(to right, rgb(0, 0, 50), rgb(100, 150, 255));
   color: #1d2327;
   line-height: 1.5;
-  padding-bottom: 70px; /* Espacio para el footer fijo */
+  padding-bottom: 70px;
 }
 
+/* CONTAINER */
 .wp-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -22,17 +23,12 @@ body {
   position: relative;
 }
 
-.wp-logo {
-  color: #f0f0f1;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-/* Header con estilo de pestañas */
+/* HEADER */
 .wp-header {
   background-color: #1f1f1f;
-  padding: 30px;
+  padding: 20px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
   position: sticky;
@@ -44,17 +40,29 @@ body {
   left: 0;
 }
 
+.wp-logo {
+  color: #f0f0f1;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.wp-branding {
+  padding: 0 20px;
+  margin-left: 20px;
+  padding-bottom: 10px;
+}
+
+/* NAV */
 .wp-nav-links {
   display: flex;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  flex-wrap: wrap;
   list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
 }
 
 .wp-nav-links li {
-  position: relative;
-  margin: 0 2px;
+  margin: 2px;
 }
 
 .wp-nav-links li a {
@@ -68,11 +76,10 @@ body {
   border: 1px solid #3c3c3c;
   border-bottom: none;
   transition: all 0.3s ease;
-  position: relative;
   top: 2px;
+  position: relative;
 }
 
-/* Pestaña activa - ESTILO ACTUALIZADO */
 .wp-nav-links li a.active-tab {
   background-color: #3a3a3a;
   color: #ffffff;
@@ -82,13 +89,11 @@ body {
   font-weight: bold;
 }
 
-/* Efecto hover */
 .wp-nav-links li a:hover:not(.active-tab) {
   background-color: #333333;
   color: #72aee6;
 }
 
-/* Indicador de pestaña activa */
 .wp-nav-links li a.active-tab::after {
   content: "";
   position: absolute;
@@ -106,29 +111,39 @@ body {
   100% { opacity: 0.8; }
 }
 
-/* Logo ajustado */
-.wp-branding {
-  padding-bottom: 10px;
-  margin-left: 40px;
-  padding: 0 20px;
-}
-
-/* Main content layout */
+/* MAIN AREA */
 .wp-main {
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   margin-top: 20px;
   padding-bottom: 40px;
 }
 
 .wp-sidebar {
-  width: 25%;
-  padding-right: 20px;
+  flex: 1 1 100%;
+  max-width: 100%;
 }
 
 .wp-content {
-  width: 75%;
+  flex: 1 1 100%;
+  max-width: 100%;
 }
 
+/* Responsive Desktop */
+@media (min-width: 768px) {
+  .wp-sidebar {
+    flex: 1 1 25%;
+    max-width: 25%;
+  }
+
+  .wp-content {
+    flex: 1 1 70%;
+    max-width: 70%;
+  }
+}
+
+/* Widgets */
 .wp-widget h3 {
   font-size: 14px;
   padding: 8px 12px;
@@ -156,9 +171,8 @@ body {
   border: 1px solid #c3c4c7;
   box-shadow: 0 0 10px rgb(255, 255, 255);
   padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
   margin: 20px auto;
+  border-radius: 8px;
 }
 
 .wp-section h2 {
@@ -200,84 +214,89 @@ body {
   margin-bottom: 8px;
 }
 
-/* Footer mejorado */
-.wp-footer {
-  background: #1f1f1f;
-  color: #f0f0f1;
-  padding: 15px;
-  text-align: center;
-  font-size: 14px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 100;
-}
-
-.wp-footer p {
-  margin: 0;
-}
-
+/* SOBRE NOSOTROS */
 .sobre-nosotros {
-    background-color: #ffffff;
-    background-position: center;
-    color: #000000;
-    padding: 50px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgb(255, 255, 255);
-    max-width: 950px;
-    margin: 50px auto;
-    text-align: center;
-    position: relative;
-    animation: fadeIn 1.5s ease-in-out;
+  background-color: #ffffff;
+  background-position: center;
+  color: #000000;
+  padding: 50px 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgb(255, 255, 255);
+  max-width: 950px;
+  margin: 50px auto;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Animación de entrada */
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .sobre-nosotros h2 {
-    font-size: 34px;
-    font-weight: bold;
-    margin-bottom: 25px;
-    color: #000000;
-    text-shadow: 0 0 10px rgba(97, 97, 97, 0.7);
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #000000;
+  text-shadow: 0 0 10px rgba(97, 97, 97, 0.7);
 }
 
 .sobre-nosotros p {
-    font-size: 18px;
-    line-height: 1.6;
-    max-width: 850px;
-    margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 850px;
+  margin: 0 auto;
 }
 
-/* Tarjetas de información */
 .sobre-nosotros .info-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    backdrop-filter: blur(10px);
-    margin-top: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+  margin-top: 20px;
 }
 
-/* Botón de acción */
+/* BUTTON */
 .sobre-nosotros .btn {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 12px 24px;
-    background-color: #72aee6;
-    color: #ffffff;
-    border-radius: 6px;
-    font-size: 18px;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 24px;
+  background-color: #72aee6;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 18px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
 }
 
 .sobre-nosotros .btn:hover {
-    background-color: #559bcc;
-    box-shadow: 0 0 12px rgba(114, 174, 230, 0.8);
+  background-color: #559bcc;
+  box-shadow: 0 0 12px rgba(114, 174, 230, 0.8);
+}
+
+
+/* MEDIA QUERIES PARA TEXTOS */
+@media (max-width: 480px) {
+  .wp-logo {
+    font-size: 18px;
+  }
+
+  .wp-nav-links li a {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .sobre-nosotros h2 {
+    font-size: 24px;
+  }
+
+  .sobre-nosotros p {
+    font-size: 16px;
+  }
+
+  .sobre-nosotros .btn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
 }
