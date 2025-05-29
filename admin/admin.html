@@ -4,11 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Panel de Administración Concesionaria</title>
-    <link rel="stylesheet" href="css/admin.css" />
     <link rel="stylesheet" href="admin.css" />
-    <link rel="stylesheet" href="css/admin.css" />
     <!-- <script defer src="js/admin.js"></script> -->
-
 </head>
 <body>
     <div class="wp-container">
@@ -20,7 +17,7 @@
 
         <div class="container">
             <header>
-                <h1>Panel de Administración - Concesionaria</h1>
+                <h2>Panel de Administración - Concesionaria</h2>
                 <nav>
                     <ul>
                         <li><a href="#inicio">Inicio</a></li>
@@ -41,116 +38,99 @@
                 <!-- Sección Ventas -->
                 <section id="ventas">
                     <h2>Ventas</h2>
-                    <div id="lista-ventas">
-                        </div>
+                    <div id="lista-ventas"></div>
                     <form id="venta">
-    <h3>Registrar nueva venta</h3>
-    <label>Cliente ID: <input type="number" name="cliente_id" required /></label>
-    <label>Vehículo ID: <input type="number" name="vehiculo_id" required /></label>
-    <label>Fecha: <input type="date" name="fecha_venta" required /></label>
-    <label>Precio: <input type="number" name="precio" step="0.01" required /></label>
-    <label>Vendedor: <input type="text" name="vendedor" required /></label>
-    <label>ID Usuario: <input type="number" name="id_usuario" required /></label>
-    <button type="submit" class="btn">Registrar Venta</button>
-</form>
-
+                        <h3>Registrar nueva venta</h3>
+                        <label for="cliente_id">Cliente ID: <input type="number" id="cliente_id" name="cliente_id" required /></label>
+                        <label for="vehiculo_id">Vehículo ID: <input type="number" id="vehiculo_id" name="vehiculo_id" required /></label>
+                        <label for="fecha_venta">Fecha: <input type="date" id="fecha_venta" name="fecha_venta" required /></label>
+                        <label for="precio">Precio: <input type="number" id="precio" name="precio" step="0.01" required /></label>
+                        <label for="vendedor">Vendedor: <input type="text" id="vendedor" name="vendedor" required /></label>
+                        <label for="id_usuario">ID Usuario: <input type="number" id="id_usuario" name="id_usuario" required /></label>
+                        <button type="submit" class="btn">Registrar Venta</button>
+                    </form>
                 </section>
 
-<section id="vehiculos">
-  <h2>Vehículos</h2>
-  <div id="lista-vehiculos"></div>
+                <section id="vehiculos">
+                    <h2>Vehículos</h2>
+                    <div id="lista-vehiculos"></div>
 
-  <form id="vehiculo">
-    <h3>Agregar Nuevo Vehículo</h3>
+                    <form id="vehiculo">
+                        <h3>Agregar Nuevo Vehículo</h3>
+                        <label for="marca">Marca:
+                            <input type="text" id="marca" name="marca" required />
+                        </label>
+                        <label for="modelo">Modelo:
+                            <input type="text" id="modelo" name="modelo" required />
+                        </label>
+                        <label for="anio">Año:
+                            <input type="number" id="anio" name="anio" required />
+                        </label>
+                        <label for="precio_vehiculo">Precio:
+                            <input type="number" step="0.01" id="precio_vehiculo" name="precio" required />
+                        </label>
+                        <label for="estado">Estado:
+                            <select id="estado" name="estado" required>
+                                <option value="">Selecciona...</option>
+                                <option value="nuevo">Nuevo</option>
+                                <option value="usado">Usado</option>
+                            </select>
+                        </label>
 
-    <label>
-      Marca:
-      <input type="text" name="marca" required />
-    </label>
-    <label>
-      Modelo:
-      <input type="text" name="modelo" required />
-    </label>
-    <label>
-      Año:
-      <input type="number" name="anio" required />
-    </label>
-    <label>
-      Precio:
-      <input type="number" step="0.01" name="precio" required />
-    </label>
-    <label>
-      Estado:
-      <select name="estado" required>
-        <option value="">Selecciona...</option>
-        <option value="nuevo">Nuevo</option>
-        <option value="usado">Usado</option>
-      </select>
-    </label>
+                        <input type="hidden" name="imagen_local_path" />
 
-    <!-- Aquí va el input file + botón de subida -->
-    <input type="hidden" name="imagen_local_path" />
+                        <label for="imagenFile">Imagen local:
+                            <input type="file" id="imagenFile" accept="image/*" />
+                        </label>
+                        <button type="button" class="btn" id="uploadImageButton">Subir Imagen</button>
+                        <p id="uploadStatus" style="font-size:0.9em;color:#555"></p>
 
-    <label>
-      Imagen local:
-      <input type="file" id="imagenFile" accept="image/*" />
-    </label>
-    <button type="button" class="btn" id="uploadImageButton">Subir Imagen</button>
-    <p id="uploadStatus" style="font-size:0.9em;color:#555"></p>
+                        <label for="imagen_url">URL de imagen externa:
+                            <input type="url" id="imagen_url" name="imagen_url" placeholder="https://ejemplo.com/imagen.jpg" />
+                        </label>
 
-    <!-- Campo para URL externa -->
-    <label>
-      URL de imagen externa:
-      <input type="url" name="imagen_url" placeholder="https://ejemplo.com/imagen.jpg" />
-    </label>
-
-    <button type="submit" class="btn" >  Agregar Vehículo</button>
-  </form>
-</section>
+                        <button type="submit" class="btn">Agregar Vehículo</button>
+                    </form>
                 </section>
-                
 
                 <section id="pagos">
                     <h2>Pagos</h2>
-                    <div id="lista-pagos">
-                        </div>
+                    <div id="lista-pagos"></div>
                     <form id="form-pago">
                         <h3>Registrar nuevo pago</h3>
-                        <label>Venta ID: <input type="number" name="venta_id" required /></label>
-                        <label>Monto: <input type="number" name="monto" step="0.01" required /></label>
-                        <label>Método:
-                            <select name="metodo_pago">
+                        <label for="venta_id">Venta ID: <input type="number" id="venta_id" name="venta_id" required /></label>
+                        <label for="monto">Monto: <input type="number" id="monto" name="monto" step="0.01" required /></label>
+                        <label for="metodo_pago">Método:
+                            <select id="metodo_pago" name="metodo_pago">
                                 <option value="efectivo">Efectivo</option>
                                 <option value="tarjeta">Tarjeta de Crédito</option>
                                 <option value="transferencia">Transferencia</option>
                             </select>
                         </label>
-                        <label>Fecha: <input type="date" name="fecha_pago" required /></label>
+                        <label for="fecha_pago">Fecha: <input type="date" id="fecha_pago" name="fecha_pago" required /></label>
                         <button type="submit" class="btn">Registrar Pago</button>
                     </form>
                 </section>
 
                 <section id="clientes">
                     <h2>Clientes</h2>
-                    <div id="lista-clientes">
-                        </div>
+                    <div id="lista-clientes"></div>
                     <form id="form-cliente">
                         <h3>Agregar nuevo cliente</h3>
-                        <label>Nombre: <input type="text" name="nombre_cliente" required /></label>
-                        <label>Email: <input type="correo" name="correo_cliente" /></label>
-                        <label>Teléfono: <input type="tel" name="telefono_cliente" /></label>
-                        <label>Direccion: <input type="text" name="direccion_cliente" /></label>
+                        <label for="nombre_cliente">Nombre: <input type="text" id="nombre_cliente" name="nombre_cliente" required /></label>
+                        <label for="correo_cliente">Email: <input type="email" id="correo_cliente" name="correo_cliente" /></label>
+                        <label for="telefono_cliente">Teléfono: <input type="tel" id="telefono_cliente" name="telefono_cliente" /></label>
+                        <label for="direccion_cliente">Dirección: <input type="text" id="direccion_cliente" name="direccion_cliente" /></label>
 
                         <button type="submit" class="btn">Agregar Cliente</button>
                     </form>
                 </section>
             </main>
-
-         
         </div>
     </div>    
+
+    <script src="/js/Post.js"></script>
+    <script src="/js/VentasPost.js"></script>
+    <script src="/js/postVehiculos.js"></script>
 </body>
-<script src="/js/Post.js"></script>
-<script src="/js/postVehiculos.js"></script>
-<script src="/js/VentasPost.js"></script>
 </html>

@@ -27,7 +27,6 @@ body {
   font-size: 24px;
   font-weight: 600;
   padding-left: 570px;
-
 }
 
 /* Header con estilo de pestañas */
@@ -74,7 +73,6 @@ body {
   top: 2px;
 }
 
-/* Pestaña activa - ESTILO ACTUALIZADO */
 .wp-nav-links li a.active-tab {
   background-color: #3a3a3a;
   color: #ffffff;
@@ -84,13 +82,11 @@ body {
   font-weight: bold;
 }
 
-/* Efecto hover */
 .wp-nav-links li a:hover:not(.active-tab) {
   background-color: #333333;
   color: #72aee6;
 }
 
-/* Indicador de pestaña activa */
 .wp-nav-links li a.active-tab::after {
   content: "";
   position: absolute;
@@ -152,7 +148,6 @@ body {
   font-size: 13px;
 }
 
-/* Sections */
 .wp-section {
   background: #fff;
   border: 1px solid #c3c4c7;
@@ -219,13 +214,6 @@ body {
   margin: 0;
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f5f7fa;
-  margin: 0;
-  padding: 0;
-}
-
 .container {
   max-width: 960px;
   margin: 20px auto;
@@ -235,7 +223,7 @@ body {
   border-radius: 8px;
 }
 
-header h1 {
+header h2 {
   text-align: center;
 }
 
@@ -254,7 +242,7 @@ nav a {
   font-weight: bold;
 }
 
-nav a:hover{
+nav a:hover {
   color: #000000;
 }
 
@@ -279,7 +267,9 @@ form label {
   margin: 10px 0 5px;
 }
 
-form input, form select, form textarea {
+form input,
+form select,
+form textarea {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -298,7 +288,7 @@ form input, form select, form textarea {
   transition: background-color 0.3s;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: #004085;
 }
 
@@ -306,4 +296,58 @@ footer {
   margin-top: 40px;
   text-align: center;
   color: #888;
+}
+
+/* RESPONSIVE: Pantallas pequeñas */
+@media (max-width: 768px) {
+  .wp-main {
+    flex-direction: column;
+  }
+
+  .wp-sidebar,
+  .wp-content {
+    width: 100%;
+    padding: 0;
+  }
+
+  .wp-logo {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .wp-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .wp-nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* RESPONSIVE: Muy pequeñas (teléfonos) */
+@media (max-width: 480px) {
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  header h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .wp-logo {
+    font-size: 18px;
+    padding: 10px 0;
+  }
 }
