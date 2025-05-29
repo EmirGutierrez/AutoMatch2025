@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Login AutoMatch</title>
+  <title>Login / Crear Cuenta - AutoMatch</title>
   <link rel="stylesheet" href="login.css">
+
   <style>
     .mensaje-exito {
       position: fixed;
@@ -19,11 +20,9 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       display: none;
       z-index: 9999;
-      opacity: 0;
+      animation: aparecer 0.5s ease-in-out;
       transition: opacity 0.5s ease-out;
-      animation: aparecer 0.5s ease-in;
     }
-
     @keyframes aparecer {
       from { opacity: 0; transform: translateX(-50%) scale(0.9); }
       to { opacity: 1; transform: translateX(-50%) scale(1); }
@@ -32,57 +31,111 @@
 </head>
 <body>
 
-  <!-- MENSAJE FUERA DEL CUADRO -->
-  <div class="mensaje-exito" id="mensajeExito">¡Inicio de sesión exitoso!</div>
+<div class="mensaje-exito" id="mensajeExito">Mensaje</div>
 
-  <div class="box">
-    <span class="borderLine"></span>
-    <form id="loginForm">
-      <h2>Iniciar Sesión</h2>
-
-      <div class="inputBox">
-        <input type="text" id="usuario" required="required">
-        <span>Usuario</span>
-        <i></i>
-      </div>
-
-      <div class="inputBox">
-        <input type="password" id="contrasena" required="required">
-        <span>Contraseña</span>
-        <i></i>
-      </div>
-
-      <div class="Links">
-        <a href="crearCuenta.html">Crea una Cuenta</a>
-      </div>
-
-      <input type="submit" value="Ingresar">
-    </form>
+<div class="box">
+  <span class="borderLine"></span>
+  <div class="form-toggle">
+    <button id="btnLogin" class="toggle-btn">Iniciar Sesión</button>
+    <button id="btnRegister" class="toggle-btn">Crear Cuenta</button>
   </div>
 
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+  <!-- Login Form -->
+  <form id="loginForm" class="form active">
+    <h2>Iniciar Sesión</h2>
+    <div class="inputBox">
+      <input type="text" id="loginUsuario" required="required">
+      <span>Usuario</span>
+      <i></i>
+    </div>
+    <div class="inputBox">
+      <input type="password" id="loginContrasena" required="required">
+      <span>Contraseña</span>
+      <i></i>
+    </div>
+    <div class="Links">
+      <a href="#" id="goRegister">Crea una Cuenta</a>
+    </div>
+    <input type="submit" value="Ingresar">
+  </form>
 
-      const usuario = document.getElementById('usuario').value;
-      const contrasena = document.getElementById('contrasena').value;
-      const mensaje = document.getElementById('mensajeExito');
+  <!-- Register Form -->
+  <form id="crearCuentaForm" class="form">
+    <h2>Crear Cuenta</h2>
+    <div class="inputBox">
+      <input type="text" id="nombre" required="required">
+      <span>Nombre</span>
+      <i></i>
+    </div>
+    <div class="inputBox">
+      <input type="text" id="usuario" required="required">
+      <span>Usuario</span>
+      <i></i>
+    </div>
+    <div class="inputBox">
+      <input type="password" id="contrasena" required="required">
+      <span>Contraseña</span>
+      <i></i>
+    </div>
+    <div class="Links">
+      <a href="#" id="goLogin">Iniciar Sesión</a>
+    </div>
+    <input type="submit" value="Crear Cuenta">
+  </form>
+</div>
 
-      if (usuario && contrasena) {
-        mensaje.style.display = 'block';
-        // Forzar reflujo para que la transición funcione
-        void mensaje.offsetWidth;
-        mensaje.style.opacity = '1';
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const crearCuentaForm = document.getElementById('crearCuentaForm');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnRegister = document.getElementById('btnRegister');
+  const mensaje = document.getElementById('mensajeExito');
 
-        setTimeout(() => {
-          mensaje.style.opacity = '0';
-          setTimeout(() => {
-            mensaje.style.display = 'none';
-          }, 500); // Esperar a que termine la transición
-        }, 3000);
-      }
-    });
-  </script>
+  btnLogin.addEventListener('click', () => {
+    loginForm.classList.add('active');
+    crearCuentaForm.classList.remove('active');
+  });
+
+  btnRegister.addEventListener('click', () => {
+    crearCuentaForm.classList.add('active');
+    loginForm.classList.remove('active');
+  });
+
+  document.getElementById('goRegister').addEventListener('click', (e) => {
+    e.preventDefault();
+    btnRegister.click();
+  });
+
+  document.getElementById('goLogin').addEventListener('click', (e) => {
+    e.preventDefault();
+    btnLogin.click();
+  });
+
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    mensaje.textContent = 'Inicio de sesión exitoso';
+    mostrarMensaje();
+  });
+
+  crearCuentaForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    mensaje.textContent = '¡Cuenta creada exitosamente!';
+    mostrarMensaje();
+  });
+
+  function mostrarMensaje() {
+    mensaje.style.display = 'block';
+    mensaje.style.opacity = '1';
+    setTimeout(() => {
+      mensaje.style.opacity = '0';
+      setTimeout(() => {
+        mensaje.style.display = 'none';
+      }, 500);
+    }, 3000);
+  }
+</script>
+
+<script src="login.js"></script>
 
 </body>
 </html>
