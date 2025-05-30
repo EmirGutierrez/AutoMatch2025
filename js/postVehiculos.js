@@ -1,10 +1,36 @@
 // postVehiculos.js
-(() => {
-  const vehiculoApi = "http://localhost:8889/vehiculo";
-  const form = document.getElementById('vehiculo');  // o 'vehiculo' si así lo nombraste
+console.log("postVehiculos.js cargado");
+
+window.addEventListener('DOMContentLoaded', () => {
+  const vehiculoApi = 'http://localhost:8889/vehiculo';
+  const form        = document.getElementById('vehiculo');
+  const listaDiv    = document.getElementById('lista-vehiculos');
+
+  if (!form) {
+    console.error("No encontré <form id='vehiculo'>");
+    return;
+  }
+  console.log("Formulario 'vehiculo' encontrado");
+
+  async function cargarVehiculos() {
+    console.log("🔄 Cargando lista de vehículos…");
+    try {
+      const res = await fetch(vehiculoApi);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const vehiculos = await res.json();
+      console.log("Vehículos recibidos:", vehiculos);
+
+      // Render tabla…
+      listaDiv.innerHTML = '';
+      /* … resto del render … */
+    } catch (err) {
+      console.error("Error al cargar vehículos:", err);
+    }
+  }
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
+    console.log("Formulario enviado");
 
     const fd = new FormData(form);
     const payload = {
@@ -14,36 +40,21 @@
       precio: parseFloat(fd.get('precio')),
       estado: fd.get('estado')
     };
-
-    console.log("🚀 Enviando payload:", payload);
+    console.log("Payload a enviar:", payload);
 
     try {
       const res = await fetch(vehiculoApi, {
-        method: 'POST',
+        method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body:    JSON.stringify(payload)
       });
-
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
-
-      const contentType = res.headers.get('content-type') || '';
-      if (contentType.includes('application/json')) {
-        const data = await res.json();
-        console.log('Vehículo creado:', data);
-        alert(`Vehículo creado: ${data.marca} ${data.modelo}`);
-      } else {
-        const text = await res.text();
-        console.log('Respuesta texto:', text);
-        alert(text);
-      }
-
-      form.reset();
-    } catch(err) {
-      console.error('Error al crear vehículo:', err);
-      alert('Hubo un error al agregar el vehículo. Revisa la consola.');
+      console.log("Respuesta del POST:", res.status);
+      // … resto del manejo …
+      await cargarVehiculos();
+    } catch (err) {
+      console.error("Error al crear vehículo:", err);
     }
   });
-})();
 
+  cargarVehiculos();
+});

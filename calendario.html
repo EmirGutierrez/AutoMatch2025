@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AutoMatch</title>
   <link rel="stylesheet" href="css/calendario.css" />
-  <script src="js/calendario.js"></script>
+  <!-- Carga tu JS de calendario tras parsear el HTML -->
+  <script src="js/calendario.js" defer></script>
+  <!-- Si usas vehiculos.js, también con defer: -->
+  <script src="js/vehiculos.js" defer></script>
 </head>
 <body>
   <div class="wp-container">
@@ -23,56 +26,58 @@
         </ul>
       </nav>
     </header>
-
-
+    
     <div class="calendario-container">
       <h2>Calendario de Citas</h2>
       <button id="agendar-cita-btn">Agendar Cita</button>
 
       <div id="calendario" class="calendario">
-          <div class="calendario-header">
-              <button id="prev-month">&lt;</button>
-              <h2 id="current-month"></h2>
-              <button id="next-month">&gt;</button>
-          </div>
-          <div id="dias" class="calendario-dias">
-              </div>
+        <div class="calendario-header">
+          <button id="prev-month">&lt;</button>
+          <h2 id="current-month"></h2>
+          <button id="next-month">&gt;</button>
+        </div>
+        <div id="dias" class="calendario-dias"></div>
       </div>
 
+      <!-- Modal convertido en formulario -->
       <div id="modal-agendar" class="modal">
-          <div class="modal-content">
-              <span class="cerrar-modal">&times;</span>
-              <h3>Agendar Nueva Cita</h3>
-              <p id="fecha-seleccionada"></p>
-              <div class="form-group">
-                  <label for="hora-cita">Hora:</label>
-                  <select id="hora-cita">
-                      <option value="09:00">09:00</option>
-                      <option value="10:00">10:00</option>
-                      <option value="11:00">11:00</option>
-                      <option value="14:00">14:00</option>
-                      <option value="15:00">15:00</option>
-                      <option value="16:00">16:00</option>
-                  </select>
-              </div>
-               <h3>Motivo de la Cita</h3>
-              <p id="fecha-seleccionada"></p>
-              <div class="form-group">
-                  <select id="hora-cita">
-                      <option value="09:00">Revisión general</option>
-                      <option value="10:00">Prueba de manejo</option>
-                      <option value="11:00">Cita de servicio</option>
-                      <option value="14:00">Entrega de vehículo</option>
-                  </select>
-              </div>
-              <button id="guardar-cita-btn">Guardar Cita</button>
-              <div id="mensaje-cita" class="mensaje"></div>
+        <form id="citas" class="modal-content">
+          <span class="cerrar-modal">&times;</span>
+          <h3>Agendar Nueva Cita</h3>
+
+          <!-- Ocultos para el POST -->
+          <input type="hidden" id="idCliente" value="1">
+          <input type="hidden" id="fechaCita">
+
+          <p id="fecha-seleccionada"></p>
+
+          <div class="form-group">
+            <label for="hora-cita">Hora:</label>
+            <select id="hora-cita"></select>
           </div>
-          <button id="agendar-cita-btn">Nota</button>
+
+          <div class="form-group">
+            <label for="motivo-cita">Motivo de la Cita:</label>
+            <select id="motivo-cita">
+              <option value="Revisión general">Revisión general</option>
+              <option value="Prueba de manejo">Prueba de manejo</option>
+              <option value="Cita de servicio">Cita de servicio</option>
+              <option value="Entrega de vehículo">Entrega de vehículo</option>
+              <option value="Cotización de vehículo">Cotización de vehículo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="notas-cita">Notas:</label>
+            <textarea id="notas-cita" rows="3"></textarea>
+          </div>
+
+          <button type="submit">Guardar Cita</button>
+          <div id="responseMessageCitas" class="mensaje"></div>
+        </form>
       </div>
-        
+    </div>
   </div>
-  <script src="calendario.js"></script>
 </body>
 </html>
-

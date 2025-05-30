@@ -1,44 +1,48 @@
- document.getElementById('venta').addEventListener('submit', async function(event) {
-            event.preventDefault(); 
+// VentasPost.js
+window.addEventListener('DOMContentLoaded', () => {
+  // 1) Obtenemos el form con id="ventas"
+  const form = document.getElementById('ventas');
+  if (!form) {
+    console.error('No encontré <form id="ventas">');
+    return;
+  }
 
-            const responseMessage = document.getElementById('responseMessage2');
-            responseMessage.style.display = 'none'; 
-            responseMessage.textContent = ''; 
+  const responseMessage = document.getElementById('responseMessage2');
+  responseMessage.style.display = 'none';
 
-            const pago = {
-                idVenta: parseInt(document.getElementById('cliente_id').value),
-                idVehiculo: parseFloat(document.getElementById('vehiculo_id').value),
-                fechaVenta: document.getElementById('fecha_venta').value,
-                vendedor: document.getElementById('vendedor').value,
-                idUsuario: document.getElementById('id_usuario').value,
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
 
-            };
-            try {
+    // 2) Leemos los valores de tus inputs
+    const venta = {
+      idCliente:  parseInt(document.getElementById('idCliente').value, 10),
+      idVehiculo: parseInt(document.getElementById('idVehiculo').value, 10),
+      fechaVenta: document.getElementById('fechaVenta').value,
+      vendedor:   document.getElementById('vendedor').value,
+      idUsuario:  parseInt(document.getElementById('idUsuario').value, 10)
+    };
 
-                const response = await fetch('http://localhost:8889/ventas', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(pago)
-                });
+    try {
+      // 3) Hacemos el POST a /ventas
+      const res = await fetch('http://localhost:8889/ventas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(venta)
+      });
+      const data = await res.json();
 
-                const responseData = await response.json();
-
-                if (response.ok) { 
-                    responseMessage.textContent = `Pago saved successfully! ID: ${responseData.idPago}`;
-                    responseMessage.className = 'success';
-                } else {
-                    
-                    const errorMessage = responseData.message || response.statusText || 'Unknown error';
-                    responseMessage.textContent = `Error saving pago: ${errorMessage}`;
-                    responseMessage.className = 'error';
-                }
-            } catch (error) {
-                
-                responseMessage.textContent = `Network error: Could not connect to the server. Please ensure the backend is running and accessible. (${error.message})`;
-                responseMessage.className = 'error';
-            } finally {
-                responseMessage.style.display = 'block'; 
-            }
-        });
+      if (res.ok) {
+        responseMessage.textContent = `Venta registrada con ID: ${data.idVenta || data.id_venta}`;
+        responseMessage.className = 'success';
+      } else {
+        responseMessage.textContent = `Error al guardar: ${data.message || res.statusText}`;
+        responseMessage.className = 'error';
+      }
+    } catch (err) {
+      responseMessage.textContent = `Error de red: ${err.message}`;
+      responseMessage.className = 'error';
+    } finally {
+      responseMessage.style.display = 'block';
+    }
+  });
+});

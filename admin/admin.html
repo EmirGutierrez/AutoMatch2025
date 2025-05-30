@@ -39,7 +39,7 @@
                     <h2>Ventas</h2>
                     <div id="lista-ventas"></div>
 
-                    <form id="ventasForm">
+                    <form id="ventas">
                         <h3>Registrar Nueva Venta</h3>
 
                         <label for="idCliente">Cliente ID:</label>
@@ -70,18 +70,23 @@
 
                     <form id="vehiculo">
                         <h3>Agregar Nuevo Vehículo</h3>
+
                         <label for="marca">Marca:
                             <input type="text" id="marca" name="marca" required />
                         </label>
+
                         <label for="modelo">Modelo:
                             <input type="text" id="modelo" name="modelo" required />
                         </label>
+
                         <label for="anio">Año:
                             <input type="number" id="anio" name="anio" required />
                         </label>
-                        <label for="precio_vehiculo">Precio:
-                            <input type="number" step="0.01" id="precio_vehiculo" name="precio" required />
+
+                        <label for="precio">Precio:
+                            <input type="number" step="0.01" id="precio" name="precio" required />
                         </label>
+
                         <label for="estado">Estado:
                             <select id="estado" name="estado" required>
                                 <option value="">Selecciona...</option>
@@ -90,20 +95,10 @@
                             </select>
                         </label>
 
-                        <input type="hidden" name="imagen_local_path" />
-
-                        <label for="imagenFile">Imagen local:
-                            <input type="file" id="imagenFile" accept="image/*" />
-                        </label>
-                        <button type="button" class="btn" id="uploadImageButton">Subir Imagen</button>
-                        <p id="uploadStatus" style="font-size:0.9em;color:#555"></p>
-
-                        <label for="imagen_url">URL de imagen externa:
-                            <input type="url" id="imagen_url" name="imagen_url" placeholder="https://ejemplo.com/imagen.jpg" />
-                        </label>
-
                         <button type="submit" class="btn">Agregar Vehículo</button>
                     </form>
+
+                    <div id="responseMessageVehiculo"></div>
                 </section>
 
                 <!-- Sección Pagos -->
@@ -162,7 +157,7 @@
     </div>
 
     <script src="/js/Post.js"></script>
-    <script src="/js/VentasPost.js"></script>
+    <script src="/js/VentasPost.js" defer></script>
     <script src="/js/postVehiculos.js"></script>
     <script src="/js/pago.js"></script>
 </body>

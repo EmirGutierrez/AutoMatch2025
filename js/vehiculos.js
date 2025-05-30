@@ -1,178 +1,138 @@
-console.log("AutoMatch cargado correctamente.");
+// js/vehiculos.js
+console.log("vehiculos.js cargado");
 
-document.addEventListener('DOMContentLoaded', function() {
-  const currentPage = window.location.pathname; // Obtiene la ruta del archivo actual
+document.addEventListener("DOMContentLoaded", () => {
+  const API            = "http://localhost:8889/vehiculo";
+  const grid           = document.querySelector(".vehiculos-grid");
+  const detallesDiv    = document.getElementById("detalles-vehiculo");
+  const filterForm     = document.getElementById("filtros-form");
+  const btnLimpiar     = document.getElementById("limpiar-filtros");
+  let allVehiculos = [];
 
-  // Función para establecer la pestaña activa
-  function setActiveTab() {
-    const currentHash = window.location.hash || ''; // Manteniendo la lógica del hash
-    document.querySelectorAll('.wp-nav-links a').forEach(link => {
-      // Comprueba si el href coincide con la ruta actual O con el hash
-      const linkPath = new URL(link.href, window.location.origin).pathname;
-      const isActivePage = linkPath === currentPage;
-      const isActiveHash = link.getAttribute('href') === currentHash;
+  // 1) Obtener vehículos desde la API
+  fetch(API)
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      allVehiculos = data;
+      renderGrid(allVehiculos);
+    })
+    .catch(err => {
+      console.error("Error al cargar vehículos:", err);
+      grid.innerHTML = `<p class="error">No se pudieron cargar los vehículos.</p>`;
+    });
 
-      link.classList.toggle('active-tab', isActivePage || isActiveHash);
+  // 2) Renderizar la cuadrícula de tarjetas
+  function renderGrid(list) {
+    // vaciamos detalles
+    detallesDiv.innerHTML = "";
+    detallesDiv.classList.add("detalles-ocultos");
+
+    grid.innerHTML = list
+      .map(v => {
+        const dv = JSON.stringify({
+          id:           v.idVehiculo,
+          marca:        v.marca,
+          modelo:       v.modelo,
+          anio:         v.anio,
+          precio:       v.precio,
+          imagen_url:   v.imagenUrl,
+          kilometraje:  v.kilometraje || "",
+          transmision:  v.transmision || "",
+          motor:        v.motor || "",
+          caracteristicas: v.caracteristicas || []
+        }).replace(/"/g, "&quot;");
+
+        return `
+          <div class="tarjeta-vehiculo">
+            <img src="${v.imagenUrl}" alt="${v.marca} ${v.modelo}">
+            <h4>${v.marca} ${v.modelo} (${v.anio})</h4>
+            <p>Precio: Q${v.precio.toLocaleString()}</p>
+            <button class="ver-detalles" data-vehiculo="${dv}">
+              Ver Detalles
+            </button>
+          </div>
+        `;
+      })
+      .join("");
+
+    // volver a enganchar listeners de “Ver Detalles”
+    grid.querySelectorAll(".ver-detalles").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const v = JSON.parse(btn.getAttribute("data-vehiculo"));
+        mostrarDetalles(v);
+      });
     });
   }
 
-  // Establecer pestaña activa al cargar la página
-  setActiveTab();
+  // 3) Mostrar detalles de un solo vehículo
+  function mostrarDetalles(v) {
+    const caracteristicasHTML = v.caracteristicas
+      .map(c => `<li>${c}</li>`)
+      .join("");
 
-  // Manejar clics en las pestañas (manteniendo tu lógica para el scroll suave y hash)
-  document.querySelectorAll('.wp-nav-links a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-          history.pushState(null, null, href);
-          setActiveTab(); // Actualizar la pestaña activa después de navegar por hash
-        }
-      }
-    });
-  });
-
-  // Manejar cambios en la URL (navegación atrás/adelante)
-  window.addEventListener('popstate', setActiveTab);
-});
-
-//CONTENIDO VEHICULOS 
-
-document.addEventListener('DOMContentLoaded', function() {
-  const tarjetasVehiculo = document.querySelectorAll('.tarjeta-vehiculo');
-  const detallesVehiculoDiv = document.getElementById('detalles-vehiculo');
-
-  tarjetasVehiculo.forEach(tarjeta => {
-    const botonDetalles = tarjeta.querySelector('.ver-detalles');
-    botonDetalles.addEventListener('click', function() {
-      const vehiculoId = tarjeta.dataset.id;
-      mostrarDetallesVehiculo(vehiculoId);
-    });
-  });
-
-  function mostrarDetallesVehiculo(id) {
-    // Aquí simularíamos la obtención de datos detallados del vehículo
-    let detalles = {};
-    if (id === 'vehiculo-1') {
-      detalles = {
-        nombre: 'Toyota Corolla (2022)',
-        precio: 'Q125,000',
-        kilometraje: '35,000 km',
-        transmision: 'Automática',
-        motor: '1.8L 4 cilindros',
-        caracteristicas: ['Aire acondicionado', 'Sistema de navegación', 'Cámara de reversa', 'Bolsas de aire']
-      };
-    } else if (id === 'vehiculo-2') {
-      detalles = {
-        nombre: 'Honda Civic (2023)',
-        precio: 'Q147,000',
-        kilometraje: '20,000 km',
-        transmision: 'Manual',
-        motor: '2.0L 4 cilindros',
-        caracteristicas: ['Techo solar', 'Asientos de cuero', 'Apple CarPlay/Android Auto', 'Control de crucero adaptativo']
-      };
-    } else if (id === 'vehiculo-3') {
-      detalles = {
-        nombre: 'Ford F-150 (2021)',
-        precio: 'Q145,000',
-        kilometraje: '50,000 km',
-        transmision: 'Automática',
-        motor: '3.5L V6 EcoBoost',
-        caracteristicas: ['Tracción 4x4', 'Pantalla táctil grande', 'Sensores de estacionamiento', 'Estribos eléctricos']
-      };
-    }
-
-    // Construir el HTML para mostrar los detalles
-    let detallesHTML = `
+    detallesDiv.innerHTML = `
       <div class="detalles-vehiculo">
-        <h5>${detalles.nombre}</h5>
-        <p><strong>Precio:</strong> ${detalles.precio}</p>
-        <p><strong>Kilometraje:</strong> ${detalles.kilometraje}</p>
-        <p><strong>Transmisión:</strong> ${detalles.transmision}</p>
-        <p><strong>Motor:</strong> ${detalles.motor}</p>
-        <p><strong>Características:</strong></p>
-        <ul>
-          ${detalles.caracteristicas.map(caracteristica => `<li>${caracteristica}</li>`).join('')}
-        </ul>
+        <div class="detalles-header">
+          <h5>${v.marca} ${v.modelo} (${v.anio})</h5>
+          <img src="${v.imagen_url}" alt="${v.marca} ${v.modelo}">
+        </div>
+        <p><strong>Precio:</strong> Q${v.precio.toLocaleString()}</p>
+        ${v.kilometraje ? `<p><strong>Kilometraje:</strong> ${v.kilometraje}</p>` : ""}
+        ${v.transmision ? `<p><strong>Transmisión:</strong> ${v.transmision}</p>` : ""}
+        ${v.motor       ? `<p><strong>Motor:</strong> ${v.motor}</p>` : ""}
+        ${caracteristicasHTML
+          ? `<p><strong>Características:</strong></p><ul>${caracteristicasHTML}</ul>`
+          : ""
+        }
         <button class="cerrar-detalles">Cerrar Detalles</button>
       </div>
     `;
+    detallesDiv.classList.remove("detalles-ocultos");
 
-    detallesVehiculoDiv.innerHTML = detallesHTML;
-    detallesVehiculoDiv.classList.remove('detalles-ocultos');
-
-    // Agregar evento para cerrar los detalles
-    const botonCerrar = detallesVehiculoDiv.querySelector('.cerrar-detalles');
-    botonCerrar.addEventListener('click', function() {
-      detallesVehiculoDiv.innerHTML = '';
-      detallesVehiculoDiv.classList.add('detalles-ocultos');
-    });
-
-    function mostrarDetallesVehiculo(id) {
-      let detalles = {};
-      if (id === 'vehiculo-1') {
-          detalles = {
-              nombre: 'Toyota Corolla (2022)',
-              precio: 'Q125,000',
-              kilometraje: '35,000 km',
-              transmision: 'Automática',
-              motor: '1.8L 4 cilindros',
-              caracteristicas: ['Aire acondicionado', 'Sistema de navegación', 'Cámara de reversa', 'Bolsas de aire'],
-              imagenSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSigcME9F_l21P4wPvF6xYOGnT5zDxmrcMtMg&s'
-          };
-      } else if (id === 'vehiculo-2') {
-          detalles = {
-              nombre: 'Honda Civic (2023)',
-              precio: 'Q147,000',
-              kilometraje: '20,000 km',
-              transmision: 'Manual',
-              motor: '2.0L 4 cilindros',
-              caracteristicas: ['Techo solar', 'Asientos de cuero', 'Apple CarPlay/Android Auto', 'Control de crucero adaptativo'],
-              imagenSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN01sE-3z4Vcxo4UeXOIwbCpGwFQZ8wafJ2w&s'
-          };
-      } else if (id === 'vehiculo-3') {
-          detalles = {
-              nombre: 'Ford F-150 (2021)',
-              precio: 'Q145,000',
-              kilometraje: '50,000 km',
-              transmision: 'Automática',
-              motor: '3.5L V6 EcoBoost',
-              caracteristicas: ['Tracción 4x4', 'Pantalla táctil grande', 'Sensores de estacionamiento', 'Estribos eléctricos'],
-              imagenSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5z4aRYyln7SYWgje-mW3N5lQUKOggucPQrw&s'
-          };
-      }
-  
-      // Construir el HTML para mostrar los detalles con la imagen
-      let detallesHTML = `
-          <div class="detalles-vehiculo">
-              <div class="detalles-header">
-                  <h5>${detalles.nombre}</h5>
-                  <img src="${detalles.imagenSrc}" alt="${detalles.nombre}" class="imagen-detalle-vehiculo">
-              </div>
-              <p><strong>Precio:</strong> ${detalles.precio}</p>
-              <p><strong>Kilometraje:</strong> ${detalles.kilometraje}</p>
-              <p><strong>Transmisión:</strong> ${detalles.transmision}</p>
-              <p><strong>Motor:</strong> ${detalles.motor}</p>
-              <p><strong>Características:</strong></p>
-              <ul>
-                  ${detalles.caracteristicas.map(caracteristica => `<li>${caracteristica}</li>`).join('')}
-              </ul>
-              <button class="cerrar-detalles">Cerrar Detalles</button>
-          </div>
-      `;
-  
-      detallesVehiculoDiv.innerHTML = detallesHTML;
-      detallesVehiculoDiv.classList.remove('detalles-ocultos');
-  
-      const botonCerrar = detallesVehiculoDiv.querySelector('.cerrar-detalles');
-      botonCerrar.addEventListener('click', function() {
-          detallesVehiculoDiv.innerHTML = '';
-          detallesVehiculoDiv.classList.add('detalles-ocultos');
+    detallesDiv
+      .querySelector(".cerrar-detalles")
+      .addEventListener("click", () => {
+        detallesDiv.innerHTML = "";
+        detallesDiv.classList.add("detalles-ocultos");
       });
   }
 
-  }
+  // 4) Filtrar al enviar el formulario
+  filterForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const f = new FormData(filterForm);
+
+    const categoria   = f.get("categoria");
+    const marcaF      = (f.get("marca") || "").toLowerCase();
+    const modeloF     = (f.get("modelo")||"").toLowerCase();
+    const minPrecio   = parseFloat(f.get("min_precio")) || 0;
+    const maxPrecio   = parseFloat(f.get("max_precio")) || Infinity;
+    const colorF      = f.get("color");
+    const palabra     = (f.get("busqueda_palabra_clave")||"").toLowerCase();
+
+    const filtrados = allVehiculos.filter(v => {
+      return (
+        (!categoria   || v.categoria   === categoria) &&
+        (!marcaF      || v.marca.toLowerCase().includes(marcaF)) &&
+        (!modeloF     || v.modelo.toLowerCase().includes(modeloF)) &&
+        (v.precio >= minPrecio && v.precio <= maxPrecio) &&
+        (!colorF      || v.color       === colorF) &&
+        (!palabra     || 
+          v.marca.toLowerCase().includes(palabra) ||
+          v.modelo.toLowerCase().includes(palabra)
+        )
+      );
+    });
+
+    renderGrid(filtrados);
+  });
+
+  // 5) Limpiar filtros
+  btnLimpiar.addEventListener("click", () => {
+    filterForm.reset();
+    renderGrid(allVehiculos);
+  });
 });
