@@ -130,7 +130,6 @@ body {
   max-width: 100%;
 }
 
-/* Responsive Desktop */
 @media (min-width: 768px) {
   .wp-sidebar {
     flex: 1 1 25%;
@@ -276,7 +275,6 @@ body {
 }
 
 
-/* MEDIA QUERIES PARA TEXTOS */
 @media (max-width: 480px) {
   .wp-logo {
     font-size: 18px;

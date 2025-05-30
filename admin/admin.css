@@ -26,7 +26,7 @@ body {
   color: #f0f0f1;
   font-size: 24px;
   font-weight: 600;
-  padding-left: 570px;
+
 }
 
 /* Header con estilo de pestañas */
@@ -298,7 +298,6 @@ footer {
   color: #888;
 }
 
-/* RESPONSIVE: Pantallas pequeñas */
 @media (max-width: 768px) {
   .wp-main {
     flex-direction: column;
@@ -327,7 +326,6 @@ footer {
   }
 }
 
-/* RESPONSIVE: Muy pequeñas (teléfonos) */
 @media (max-width: 480px) {
   nav ul {
     flex-direction: column;

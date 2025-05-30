@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Panel de Administración Concesionaria</title>
     <link rel="stylesheet" href="admin.css" />
-    <!-- <script defer src="js/admin.js"></script> -->
 </head>
 <body>
     <div class="wp-container">
@@ -36,53 +35,35 @@
                 </section>
 
                 <!-- Sección Ventas -->
-                <section id="venta">
+                <section id="ventas">
                     <h2>Ventas</h2>
-
-                    <div id="lista-ventas">
-                        </div>
-                    <form id="ventaa">
-   <form id="ventasForm"> <h3>Registrar Nueva Venta</h3>
-
-    <label for="idCliente">Cliente ID:</label>
-    <input type="number" id="idCliente" name="idCliente" required><br><br>
-
-    <label for="idVehiculo">Vehículo ID:</label>
-    <input type="number" id="idVehiculo" name="idVehiculo" required><br><br>
-
-    <label for="fechaVenta">Fecha de Venta:</label>
-    <input type="date" id="fechaVenta" name="fechaVenta" required><br><br>
-
-    <label for="vendedor">Vendedor:</label>
-    <input type="text" id="vendedor" name="vendedor" required><br><br>
-
-    <label for="idUsuario">ID Usuario:</label>
-    <input type="number" id="idUsuario" name="idUsuario" required><br><br>
-
-    <button type="submit" class="btn">Registrar Venta</button>
-</form>
-                </section>
-
-
-    
-
-<section id="vehiculos">
-  <h2>Vehículos</h2>
-  <div id="lista-vehiculos"></div>
-
                     <div id="lista-ventas"></div>
-                    <form id="venta">
-                        <h3>Registrar nueva venta</h3>
-                        <label for="cliente_id">Cliente ID: <input type="number" id="cliente_id" name="cliente_id" required /></label>
-                        <label for="vehiculo_id">Vehículo ID: <input type="number" id="vehiculo_id" name="vehiculo_id" required /></label>
-                        <label for="fecha_venta">Fecha: <input type="date" id="fecha_venta" name="fecha_venta" required /></label>
-                        <label for="precio">Precio: <input type="number" id="precio" name="precio" step="0.01" required /></label>
-                        <label for="vendedor">Vendedor: <input type="text" id="vendedor" name="vendedor" required /></label>
-                        <label for="id_usuario">ID Usuario: <input type="number" id="id_usuario" name="id_usuario" required /></label>
+
+                    <form id="ventasForm">
+                        <h3>Registrar Nueva Venta</h3>
+
+                        <label for="idCliente">Cliente ID:</label>
+                        <input type="number" id="idCliente" name="idCliente" required><br><br>
+
+                        <label for="idVehiculo">Vehículo ID:</label>
+                        <input type="number" id="idVehiculo" name="idVehiculo" required><br>
+
+                        <label for="fechaVenta">Fecha de Venta:</label>
+                        <input type="date" id="fechaVenta" name="fechaVenta" required><br><br>
+
+                        <label for="vendedor">Vendedor:</label>
+                        <input type="text" id="vendedor" name="vendedor" required><br><br>
+
+                        <label for="idUsuario">ID Usuario:</label>
+                        <input type="number" id="idUsuario" name="idUsuario" required><br><br>
+
                         <button type="submit" class="btn">Registrar Venta</button>
                     </form>
+
+                    <div id="responseMessage2"></div>
                 </section>
 
+                <!-- Sección Vehículos -->
                 <section id="vehiculos">
                     <h2>Vehículos</h2>
                     <div id="lista-vehiculos"></div>
@@ -125,46 +106,64 @@
                     </form>
                 </section>
 
+                <!-- Sección Pagos -->
                 <section id="pagos">
                     <h2>Pagos</h2>
-                    <div id="lista-pagos"></div>
-                    <form id="pago">
-                        <h3>Registrar nuevo pago</h3>
-                        <label for="venta_id">Venta ID: <input type="number" id="venta_id" name="venta_id" required /></label>
-                        <label for="monto">Monto: <input type="number" id="monto" name="monto" step="0.01" required /></label>
-                        <label for="metodo_pago">Método:
-                            <select id="metodo_pago" name="metodo_pago">
-                                <option value="efectivo">Efectivo</option>
-                                <option value="tarjeta">Tarjeta de Crédito</option>
-                                <option value="transferencia">Transferencia</option>
-                            </select>
-                        </label>
-                        <label for="fecha_pago">Fecha: <input type="date" id="fecha_pago" name="fecha_pago" required /></label>
-                        <button type="submit" class="btn">Registrar Pago</button>
+                    <form id="pagoForm">
+                        <label for="idVenta">ID Venta:</label>
+                        <input type="number" id="idVenta" name="idVenta" required>
+
+                        <label for="monto">Monto:</label>
+                        <input type="number" id="monto" name="monto" step="0.01" required>
+
+                        <label for="metodoPago">Método de Pago:</label>
+                        <select id="metodoPago" name="metodoPago" required>
+                            <option value="">Seleccione un método</option>
+                            <option value="Tarjeta de Credito">Tarjeta de Crédito</option>
+                            <option value="Tarjeta de Debito">Tarjeta de Débito</option>
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                            <option value="QR">QR</option>
+                        </select>
+
+                        <label for="fechaPago">Fecha de Pago:</label>
+                        <input type="date" id="fechaPago" name="fechaPago" required>
+
+                        <button type="submit" class="btn">Agregar Pago</button>
                     </form>
+
+                    <div id="responseMessage"></div>
                 </section>
 
+                <!-- Sección Clientes -->
                 <section id="clientes">
                     <h2>Clientes</h2>
                     <div id="lista-clientes"></div>
                     <form id="form-cliente">
                         <h3>Agregar nuevo cliente</h3>
-                        <label for="nombre_cliente">Nombre: <input type="text" id="nombre_cliente" name="nombre_cliente" required /></label>
-                        <label for="correo_cliente">Email: <input type="email" id="correo_cliente" name="correo_cliente" /></label>
-                        <label for="telefono_cliente">Teléfono: <input type="tel" id="telefono_cliente" name="telefono_cliente" /></label>
-                        <label for="direccion_cliente">Dirección: <input type="text" id="direccion_cliente" name="direccion_cliente" /></label>
+                        <label for="nombre_cliente">Nombre:
+                            <input type="text" id="nombre_cliente" name="nombre_cliente" required />
+                        </label>
+                        <label for="correo_cliente">Email:
+                            <input type="email" id="correo_cliente" name="correo_cliente" />
+                        </label>
+                        <label for="telefono_cliente">Teléfono:
+                            <input type="tel" id="telefono_cliente" name="telefono_cliente" />
+                        </label>
+                        <label for="direccion_cliente">Dirección:
+                            <input type="text" id="direccion_cliente" name="direccion_cliente" />
+                        </label>
 
                         <button type="submit" class="btn">Agregar Cliente</button>
                     </form>
                 </section>
-
             </main>
         </div>
-    </div>    
+    </div>
 
     <script src="/js/Post.js"></script>
     <script src="/js/VentasPost.js"></script>
     <script src="/js/postVehiculos.js"></script>
-    <script src="/js/PagosPos.js"></script>
+    <script src="/js/pago.js"></script>
 </body>
 </html>

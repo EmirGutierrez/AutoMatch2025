@@ -423,7 +423,6 @@ body {
     background-color: #e0f7fa;
 }
 
-/* Responsivo */
 @media (max-width: 1024px) {
     .wp-sidebar {
         width: 100%;

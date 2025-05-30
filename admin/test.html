@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Pago</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="number"],
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: calc(100% - 22px);
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        input[type="number"]:focus,
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 20px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #responseMessage {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Save New Pago</h2>
+
+        <form id="pagoForm">
+            <label for="idVenta">ID Venta:</label>
+            <input type="number" id="idVenta" name="idVenta" required>
+
+            <label for="monto">Monto:</label>
+            <input type="number" id="monto" name="monto" step="0.01" required>
+
+            <label for="metodoPago">Método de Pago:</label>
+            <select id="metodoPago" name="metodoPago" required>
+                <option value="">Seleccione un método</option>
+                <option value="Tarjeta de Credito">Tarjeta de Crédito</option>
+                <option value="Tarjeta de Debito">Tarjeta de Débito</option>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                <option value="QR">QR</option>
+            </select>
+
+            <label for="fechaPago">Fecha de Pago:</label>
+            <input type="date" id="fechaPago" name="fechaPago" required>
+
+            <button type="submit">Save Pago</button>
+        </form>
+
+        <div id="responseMessage"></div>
+    </div>
+
+    <script>
+        document.getElementById('pagoForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Stop default form submission
+
+            const responseMessage = document.getElementById('responseMessage');
+            responseMessage.style.display = 'none'; // Hide previous messages
+            responseMessage.textContent = ''; // Clear previous text
+
+            // Construct the pago object based on your entity's @JsonProperty names
+            const pago = {
+                idVenta: parseInt(document.getElementById('idVenta').value),
+                monto: parseFloat(document.getElementById('monto').value),
+                metodoPago: document.getElementById('metodoPago').value,
+                fechaPago: document.getElementById('fechaPago').value // Already in YYYY-MM-DD format for LocalDate
+            };
+
+            try {
+                // IMPORTANT: Adjust this URL to your actual Spring Boot endpoint
+                // Assuming your Spring Boot app runs on 8080 and the controller maps to /api/pagos
+                const response = await fetch('http://localhost:8889/pagos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(pago)
+                });
+
+                const responseData = await response.json(); // Parse response JSON
+
+                if (response.ok) { // Check if HTTP status code is 2xx
+                    responseMessage.textContent = `Pago saved successfully! ID: ${responseData.idPago}`;
+                    responseMessage.className = 'success';
+                } else {
+                    // Handle server-side errors (e.g., validation errors)
+                    const errorMessage = responseData.message || response.statusText || 'Unknown error';
+                    responseMessage.textContent = `Error saving pago: ${errorMessage}`;
+                    responseMessage.className = 'error';
+                }
+            } catch (error) {
+                // Handle network errors (e.g., server not running, CORS issues)
+                responseMessage.textContent = `Network error: Could not connect to the server. Please ensure the backend is running and accessible. (${error.message})`;
+                responseMessage.className = 'error';
+            } finally {
+                responseMessage.style.display = 'block'; // Always show the message at the end
+            }
+        });
+    </script>
+
+</body>
+</html>

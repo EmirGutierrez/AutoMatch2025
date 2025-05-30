@@ -11,7 +11,7 @@ body {
   background: linear-gradient(to right, rgb(0, 0, 50), rgb(100, 150, 255));
   color: #1d2327;
   line-height: 1.5;
-  padding-bottom: 70px; /* Espacio para el footer fijo */
+  padding-bottom: 70px;
 }
 
 .wp-container {
@@ -28,7 +28,6 @@ body {
   font-weight: 600;
 }
 
-/* Header con estilo de pestañas */
 .wp-header {
   background-color: #1f1f1f;
   padding: 30px;
@@ -72,7 +71,6 @@ body {
   top: 2px;
 }
 
-/* Pestaña activa - ESTILO ACTUALIZADO */
 .wp-nav-links li a.active-tab {
   background-color: #3a3a3a;
   color: #ffffff;
@@ -82,13 +80,11 @@ body {
   font-weight: bold;
 }
 
-/* Efecto hover */
 .wp-nav-links li a:hover:not(.active-tab) {
   background-color: #333333;
   color: #72aee6;
 }
 
-/* Indicador de pestaña activa */
 .wp-nav-links li a.active-tab::after {
   content: "";
   position: absolute;
@@ -106,14 +102,12 @@ body {
   100% { opacity: 0.8; }
 }
 
-/* Logo ajustado */
 .wp-branding {
   padding-bottom: 10px;
   margin-left: 40px;
   padding: 0 20px;
 }
 
-/* Main content layout */
 .wp-main {
   margin-top: 20px;
   padding-bottom: 40px;
@@ -149,7 +143,6 @@ body {
   font-size: 13px;
 }
 
-/* Sections */
 .wp-section {
   background: #fff;
   border: 1px solid #c3c4c7;
@@ -198,7 +191,6 @@ body {
   margin-bottom: 8px;
 }
 
-/* Footer mejorado */
 .wp-footer {
   background: #1f1f1f;
   color: #f0f0f1;
@@ -216,9 +208,7 @@ body {
   margin: 0;
 }
 
-/*CONTENIDO VEHICULO*/
-
-/* Estilos para la sección de vehículos */
+/* CONTENIDO VEHICULO */
 .vehiculos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -272,7 +262,6 @@ body {
   background-color: #5c8dc6;
 }
 
-/* Estilos para la sección de detalles del vehículo (inicialmente oculta) */
 #detalles-vehiculo {
   margin-top: 30px;
   padding: 20px;
@@ -307,10 +296,6 @@ body {
   color: #fff;
   border: none;
   padding: 10px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -338,13 +323,11 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Estilos para la sección de filtros horizontal */
 .filtros-seccion {
   background-color: #f9f9f9;
   padding: 25px;
   margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   box-shadow: 0 0 10px rgb(255, 255, 255);
   margin: 20px auto;
 }
@@ -376,15 +359,10 @@ body {
   font-size: 0.9em;
 }
 
-.filtros-horizontal .filtro.precio {
-  display: flex;
-  flex-direction: column;
-}
-
 .filtros-horizontal .botones-filtro {
   display: flex;
   gap: 10px;
-  margin-left: auto; /* Empuja los botones a la derecha si hay espacio */
+  margin-left: auto;
 }
 
 .filtros-horizontal .botones-filtro button {
@@ -396,8 +374,6 @@ body {
   cursor: pointer;
   font-size: 0.9em;
   transition: background-color 0.3s ease;
-  float: left;
-  margin: left ;
 }
 
 .filtros-horizontal .botones-filtro button:hover {
@@ -412,127 +388,82 @@ body {
   background-color: #c82333;
 }
 
-.vehiculos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.tarjeta-vehiculo {
-  background-color: #fff;
-  border: 1px solid #c3c4c7;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.tarjeta-vehiculo img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-bottom: 1px solid #dcdcde;
-}
-
-.tarjeta-vehiculo h4 {
-  padding: 15px;
-  margin-bottom: 5px;
-  font-size: 1.5em;
-  color: #1d2327;
-}
-
-.tarjeta-vehiculo p {
-  padding: 0 15px 15px;
-  color: #646970;
-}
-
-.tarjeta-vehiculo .ver-detalles {
-  background-color: #72aee6;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 0 0 8px 8px;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-.tarjeta-vehiculo .ver-detalles:hover {
-  background-color: #5c8dc6;
-}
-
-/* Estilos para la sección de detalles del vehículo (inicialmente oculta) */
-#detalles-vehiculo {
-  margin-top: 30px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #dcdcdc;
-  border-radius: 8px;
-}
-
-.detalles-ocultos {
-  display: none;
-}
-
-.detalles-vehiculo h5 {
-  font-size: 1.8em;
-  color: #1d2327;
-  margin-bottom: 10px;
-}
-
-.detalles-vehiculo p {
-  line-height: 1.7;
-  margin-bottom: 15px;
-}
-
-.detalles-vehiculo ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-bottom: 15px;
-}
-
-.detalles-vehiculo .cerrar-detalles {
-  background-color: #e74c3c;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.detalles-vehiculo .cerrar-detalles:hover {
-  background-color: #c0392b;
-}
-
-.detalles-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 15px;
-}
-
-.detalles-header h5 {
-  margin-bottom: 0;
-}
-
-.imagen-detalle-vehiculo {
-  max-width: 200px;
-  height: auto;
-}
-
 .busqueda {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 100;
-    align-items: left;
-    display: flex;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 100;
+  align-items: left;
+  display: flex;
+}
+
+@media (max-width: 991px) {
+  .wp-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wp-branding {
+    margin-left: 0;
+    padding: 10px 0;
+  }
+  .wp-nav-links {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .wp-sidebar, .wp-content {
+    width: 100%;
+    padding-right: 0;
+  }
+  .filtros-horizontal {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filtros-horizontal .botones-filtro {
+    margin-left: 0;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 767px) {
+  .wp-header {
+    padding: 20px;
+  }
+  .wp-nav-links {
+    gap: 10px;
+  }
+  .wp-nav-links li a {
+    font-size: 12px;
+    padding: 8px 14px;
+    
+  }
+  .wp-section h2 {
+    font-size: 20px;
+  }
+  .vehiculos-grid {
+    grid-template-columns: 1fr;
+  }
+  .detalles-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .imagen-detalle-vehiculo {
+    max-width: 100%;
+  }
+  .filtros-horizontal .filtro {
+    width: 100%;
+  }
+  .filtros-horizontal .botones-filtro {
+    flex-direction: column;
+    gap: 5px;
+    align-items: stretch;
+  }
+  .wp-footer {
+    font-size: 13px;
+    padding: 10px;
+  }
+  .tarjeta-vehiculo h4 {
+    font-size: 1.2em;
+  }
+  .tarjeta-vehiculo p {
+    font-size: 0.9em;
+  }
 }
