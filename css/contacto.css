@@ -1,0 +1,190 @@
+/* Globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.doble {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.triple {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+
+
+/*Seccio_1*/
+.seccion_1 {
+    margin-top: 120px;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Se aumenta el tamaño máximo del formulario */
+    border: 3px solid #4cacaf;
+}
+h2 {
+    text-align: center;
+    color: #4c7daf;
+    margin-bottom: 30px;
+    font-size: 2.5rem; /* Se aumenta el tamaño del título */
+}
+label {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    display: block;
+    color: #333;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 20px 0;
+    border: 2px solid #4cacaf;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+input[type="date"], input[type="time"] {
+    background-color: #e8eff5;
+}
+.section-title {
+    margin-top: 30px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #0288d1;
+}
+.enviar {
+    background-color: #1d4fa5;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.3rem;
+    transition: background-color 0.3s;
+}
+.enviar:hover {
+    opacity: 85%;
+}
+.form-container textarea {
+    resize: vertical;
+}
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="tel"],
+.form-container input[type="number"] {
+    background-color: #f1f8e9;
+}
+
+
+.subir_label {
+    border: 1px ;
+    border: 3px dashed #4caf50;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.subir_label:hover {
+    background-color: #69ea4c;
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*footer*/
+footer {
+    background-color: #f5ffeb;
+    padding: 50px ;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 30px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #1a1a1a;
+}
+
+.copyright {
+    color: #333;
+    font-size: 15px;
+}
+
+.social-container {
+    margin-top: 1rem;
+    display: flex;
+    gap: 50px;
+}
+.social-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    transition: background 0.3s;
+}
+.social-link:hover {
+    background-color: #2EA048;
+}
