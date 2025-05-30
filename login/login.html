@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Login / Crear Cuenta - AutoMatch</title>
+  <title>AutoMatch - Login y Registro</title>
   <link rel="stylesheet" href="login.css">
-
   <style>
     .mensaje-exito {
       position: fixed;
@@ -14,7 +13,7 @@
       background-color: #28a745;
       color: white;
       padding: 15px 30px;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: bold;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -23,9 +22,22 @@
       animation: aparecer 0.5s ease-in-out;
       transition: opacity 0.5s ease-out;
     }
+
     @keyframes aparecer {
       from { opacity: 0; transform: translateX(-50%) scale(0.9); }
       to { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    .form {
+      display: none;
+    }
+
+    .form.active {
+      display: block;
+    }
+
+    .toggle-btn.active {
+      font-weight: bold;
     }
   </style>
 </head>
@@ -35,66 +47,119 @@
 
 <div class="box">
   <span class="borderLine"></span>
+
   <div class="form-toggle">
-    <button id="btnLogin" class="toggle-btn">Iniciar Sesión</button>
-    
+    <button id="btnLogin" class="toggle-btn active">Iniciar Sesión</button>
+    <button id="btnRegister" class="toggle-btn">Crear Cuenta</button>
   </div>
 
   <!-- Login Form -->
   <form id="loginForm" class="form active">
     <h2>Iniciar Sesión</h2>
     <div class="inputBox">
-      <input type="text" id="loginUsuario" required="required">
-      <span>Usuario</span>
+      <input type="text" id="loginUsuario" name="correo" required>
+      <span>Correo</span>
       <i></i>
     </div>
     <div class="inputBox">
-      <input type="password" id="loginContrasena" required="required">
+      <input type="password" id="loginContrasena" name="contrasena" required>
       <span>Contraseña</span>
       <i></i>
     </div>
-    
     <input type="submit" value="Ingresar">
   </form>
 
-  
+  <!-- Registro Form -->
+  <form id="registroForm" class="form">
+    <h2>Crear Cuenta</h2>
+    <div class="inputBox">
+      <input type="text" id="registroNombre" name="nombre" required>
+      <span>Nombre completo</span>
+      <i></i>
+    </div>
+    <div class="inputBox">
+      <input type="email" id="registroCorreo" name="correo" required>
+      <span>Correo</span>
+      <i></i>
+    </div>
+    <div class="inputBox">
+      <input type="password" id="registroContrasena" name="contrasena" required>
+      <span>Contraseña</span>
+      <i></i>
+    </div>
+    <div class="inputBox">
+      <select id="registroRol" name="rol" required>
+        <option value="">Selecciona un rol...</option>
+        <option value="lector">Lector</option>
+        <option value="editor">Editor</option>
+        <option value="administrador">Administrador</option>
+      </select>
+      <span>Rol</span>
+    </div>
+    <input type="submit" value="Registrar">
+  </form>
+</div>
 
 <script>
   const loginForm = document.getElementById('loginForm');
-  const crearCuentaForm = document.getElementById('crearCuentaForm');
+  const registroForm = document.getElementById('registroForm');
   const btnLogin = document.getElementById('btnLogin');
   const btnRegister = document.getElementById('btnRegister');
   const mensaje = document.getElementById('mensajeExito');
 
+  // Toggle entre login y registro
   btnLogin.addEventListener('click', () => {
     loginForm.classList.add('active');
-    crearCuentaForm.classList.remove('active');
+    registroForm.classList.remove('active');
+    btnLogin.classList.add('active');
+    btnRegister.classList.remove('active');
   });
 
   btnRegister.addEventListener('click', () => {
-    crearCuentaForm.classList.add('active');
+    registroForm.classList.add('active');
     loginForm.classList.remove('active');
+    btnRegister.classList.add('active');
+    btnLogin.classList.remove('active');
   });
 
-  document.getElementById('goRegister').addEventListener('click', (e) => {
+  // Login - solo busca, no crea
+  loginForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    btnRegister.click();
+    const datos = {
+      correo: document.getElementById("loginUsuario").value.trim(),
+      contrasena: document.getElementById("loginContrasena").value
+    };
+
+    try {
+      const response = await fetch("http://localhost:8889/usuario/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datos)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        mensaje.textContent = '✅ Inicio de sesión exitoso';
+        mostrarMensaje();
+        setTimeout(() => {
+          window.location.href = "menu.html";
+        }, 1500);
+      } else {
+        mensaje.textContent = '❌ Usuario o contraseña incorrectos';
+        mostrarMensaje();
+      }
+    } catch (error) {
+      console.error("Error en login:", error);
+      mensaje.textContent = '⚠️ Error al conectar con el servidor';
+      mostrarMensaje();
+    }
   });
 
-  document.getElementById('goLogin').addEventListener('click', (e) => {
+  // Registro - deshabilitado
+  registroForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    btnLogin.click();
-  });
-
-  loginForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    mensaje.textContent = 'Inicio de sesión exitoso';
-    mostrarMensaje();
-  });
-
-  crearCuentaForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    mensaje.textContent = '¡Cuenta creada exitosamente!';
+    mensaje.textContent = '⚠️ El registro está deshabilitado temporalmente';
     mostrarMensaje();
   });
 
@@ -109,8 +174,6 @@
     }, 3000);
   }
 </script>
-
-<script src="login.js"></script>
 
 </body>
 </html>
