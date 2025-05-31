@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Factura | AutoMatch</title>
+  <link rel="stylesheet" href="css/factura.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>AutoMatch - Generador de Facturas</h1>
+
+    <form id="invoice-form">
+      <label>Nombre del Cliente:
+        <input type="text" id="cliente" required />
+      </label>
+
+      <label>Modelo del Vehículo:
+        <input type="text" id="modelo" required />
+      </label>
+
+      <label>Marca:
+        <input type="text" id="marca" required />
+      </label>
+
+      <label>Año:
+        <input type="number" id="anio" required />
+      </label>
+
+      <label>Precio (Q):
+        <input type="number" id="precio" required />
+      </label>
+
+      <label>Impuesto (%):
+        <input type="number" id="impuesto" value="5" required />
+      </label>
+
+      <button type="submit">Generar Factura</button>
+
+    </form>
+    
+    <br>
+
+    <a type="submit" href="/admin/admin.html" style="background-color: red; padding: 10px; color: white; text-decoration: none; border-radius: 5px; font-weight: 500;">Cancelar Factura</a>
+
+    <div id="factura" class="factura oculto">
+      <h2>Factura - AutoMatch</h2>
+      <p><strong>Cliente:</strong> <span id="f-cliente"></span></p>
+      <p><strong>Vehículo:</strong> <span id="f-vehiculo"></span></p>
+      <p><strong>Precio Base:</strong> Q<span id="f-precio"></span></p>
+      <p><strong>Impuesto:</strong> Q<span id="f-impuesto"></span></p>
+      <p><strong>Total:</strong> Q<span id="f-total"></span></p>
+
+      <button onclick="window.print()">Imprimir Factura</button>
+    </div>
+  </div>
+
+  <script src="/js/factura.js"></script>
+</body>
+</html>
