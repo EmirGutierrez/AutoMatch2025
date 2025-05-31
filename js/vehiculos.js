@@ -2,14 +2,18 @@
 console.log("vehiculos.js cargado");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const API            = "http://localhost:8889/vehiculo";
-  const grid           = document.querySelector(".vehiculos-grid");
-  const detallesDiv    = document.getElementById("detalles-vehiculo");
-  const filterForm     = document.getElementById("filtros-form");
-  const btnLimpiar     = document.getElementById("limpiar-filtros");
+  // 1) Endpoint para obtener la lista de vehículos (GET)
+  const API = "http://localhost:8889/vehiculo";  // Asegúrate de que este endpoint solo sirva GET y no POST
+
+  // Contenedores en el HTML
+  const grid        = document.querySelector(".vehiculos-grid");
+  const detallesDiv = document.getElementById("detalles-vehiculo");
+  const filterForm  = document.getElementById("filtros-form");
+  const btnLimpiar  = document.getElementById("limpiar-filtros");
+
   let allVehiculos = [];
 
-  // 1) Obtener vehículos desde la API
+  // 2) Traer los vehículos desde el backend (solo GET)
   fetch(API)
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -24,24 +28,26 @@ document.addEventListener("DOMContentLoaded", () => {
       grid.innerHTML = `<p class="error">No se pudieron cargar los vehículos.</p>`;
     });
 
-  // 2) Renderizar la cuadrícula de tarjetas
-  function renderGrid(list) {
-    // vaciamos detalles
+  // 3) Función que dibuja las tarjetas en la cuadrícula
+  function renderGrid(lista) {
+    // Ocultamos/despejamos el div de detalles
     detallesDiv.innerHTML = "";
     detallesDiv.classList.add("detalles-ocultos");
 
-    grid.innerHTML = list
+    // Construimos el HTML de cada tarjeta a partir de los objetos en 'lista'
+    grid.innerHTML = lista
       .map(v => {
+        // Serializamos únicamente los campos que usaremos en "Ver Detalles"
         const dv = JSON.stringify({
-          id:           v.idVehiculo,
-          marca:        v.marca,
-          modelo:       v.modelo,
-          anio:         v.anio,
-          precio:       v.precio,
-          imagen_url:   v.imagenUrl,
-          kilometraje:  v.kilometraje || "",
-          transmision:  v.transmision || "",
-          motor:        v.motor || "",
+          id:             v.idVehiculo,
+          marca:          v.marca,
+          modelo:         v.modelo,
+          anio:           v.anio,
+          precio:         v.precio,
+          imagen_url:     v.imagenUrl,
+          kilometraje:    v.kilometraje || "",
+          transmision:    v.transmision || "",
+          motor:          v.motor || "",
           caracteristicas: v.caracteristicas || []
         }).replace(/"/g, "&quot;");
 
@@ -58,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .join("");
 
-    // volver a enganchar listeners de “Ver Detalles”
+    // 4) Volvemos a enganchar los listeners de “Ver Detalles” en cada botón
     grid.querySelectorAll(".ver-detalles").forEach(btn => {
       btn.addEventListener("click", () => {
         const v = JSON.parse(btn.getAttribute("data-vehiculo"));
@@ -67,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3) Mostrar detalles de un solo vehículo
+  // 5) Función para mostrar el modal (o DIV) con los detalles de un vehículo
   function mostrarDetalles(v) {
     const caracteristicasHTML = v.caracteristicas
       .map(c => `<li>${c}</li>`)
@@ -100,18 +106,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // 4) Filtrar al enviar el formulario
+  // 6) Lógica para filtrar la lista al enviar el formulario
   filterForm.addEventListener("submit", e => {
     e.preventDefault();
     const f = new FormData(filterForm);
 
-    const categoria   = f.get("categoria");
-    const marcaF      = (f.get("marca") || "").toLowerCase();
-    const modeloF     = (f.get("modelo")||"").toLowerCase();
-    const minPrecio   = parseFloat(f.get("min_precio")) || 0;
-    const maxPrecio   = parseFloat(f.get("max_precio")) || Infinity;
-    const colorF      = f.get("color");
-    const palabra     = (f.get("busqueda_palabra_clave")||"").toLowerCase();
+    const categoria = f.get("categoria");
+    const marcaF    = (f.get("marca")  || "").toLowerCase();
+    const modeloF   = (f.get("modelo") || "").toLowerCase();
+    const minPrecio = parseFloat(f.get("min_precio")) || 0;
+    const maxPrecio = parseFloat(f.get("max_precio")) || Infinity;
+    const colorF    = f.get("color");
+    const palabra   = (f.get("busqueda_palabra_clave") || "").toLowerCase();
 
     const filtrados = allVehiculos.filter(v => {
       return (
@@ -120,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         (!modeloF     || v.modelo.toLowerCase().includes(modeloF)) &&
         (v.precio >= minPrecio && v.precio <= maxPrecio) &&
         (!colorF      || v.color       === colorF) &&
-        (!palabra     || 
+        (!palabra     ||
           v.marca.toLowerCase().includes(palabra) ||
           v.modelo.toLowerCase().includes(palabra)
         )
@@ -130,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderGrid(filtrados);
   });
 
-  // 5) Limpiar filtros
+  // 7) “Limpiar filtros” vuelve a mostrar todos los vehículos
   btnLimpiar.addEventListener("click", () => {
     filterForm.reset();
     renderGrid(allVehiculos);
