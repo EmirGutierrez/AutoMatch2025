@@ -37,28 +37,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Limpiar días anteriores
     diasContainer.innerHTML = '';
 
-    // Crear celdas "vacías" si el mes no empieza en domingo
-    // Ajuste: consideramos que primerDiaMes=0 es domingo; queremos celdas vacías de lunes a domingo.
-    // Si deseas iniciar el calendario en lunes, ajusta los cálculos. Aquí iniciamos en domingo.
+
     for (let i = 0; i < primerDiaMes; i++) {
       const celdaVacia = document.createElement('div');
       celdaVacia.classList.add('dia', 'dia-vacio');
       diasContainer.appendChild(celdaVacia);
     }
 
-    // Crear celdas para cada día del mes
     for (let diaNum = 1; diaNum <= diasEnMes; diaNum++) {
       const celdaDia = document.createElement('div');
       celdaDia.classList.add('dia');
       celdaDia.textContent = diaNum;
 
-      // Determinar si hay cita para este día (solo para resaltar)
+
       const fechaStr = formatearFechaYYYYMMDD(año, mes + 1, diaNum);
       if (tieneCitaEnFecha(fechaStr)) {
         celdaDia.classList.add('dia-con-cita');
       }
 
-      // Al hacer click en un día, abrir modal para agendar nueva cita en esa fecha
+
       celdaDia.addEventListener('click', () => {
         abrirModalParaFecha(año, mes, diaNum);
       });
@@ -67,8 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ---------------- Formateadores de fecha ----------------
-  // Retorna "YYYY-MM-DD" dado año, mes (1-12) y día (1-31)
   function formatearFechaYYYYMMDD(año, mes, dia) {
     const mm = String(mes).padStart(2, '0');
     const dd = String(dia).padStart(2, '0');
